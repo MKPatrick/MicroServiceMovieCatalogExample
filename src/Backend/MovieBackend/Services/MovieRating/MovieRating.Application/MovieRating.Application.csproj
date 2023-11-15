@@ -15,4 +15,8 @@
     <ProjectReference Include="..\MovieRating.Infrastructure\MovieRating.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTO\MovieStatistics\" />
+  </ItemGroup>
+
 </Project>
