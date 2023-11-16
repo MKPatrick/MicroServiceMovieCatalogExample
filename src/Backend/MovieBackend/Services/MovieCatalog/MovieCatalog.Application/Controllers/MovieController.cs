@@ -9,10 +9,12 @@ namespace MovieCatalog.Application.Controllers
 	public class MovieController : ControllerBase
 	{
 		private readonly IMovieService movieService;
+		private readonly IReviewService reviewService;
 
-		public MovieController(IMovieService movieService)
+		public MovieController(IMovieService movieService, IReviewService reviewService)
 		{
 			this.movieService = movieService;
+			this.reviewService = reviewService;
 		}
 
 		// GET: api/<MovieController>
@@ -20,6 +22,8 @@ namespace MovieCatalog.Application.Controllers
 		public async Task<ActionResult<IEnumerable<GetMovieDTO>>> Get()
 		{
 			var result = await movieService.GetAllMovie();
+			var reviews = reviewService.GetAverageRatingOfAllMovies();
+
 			return Ok(result);
 		}
 
