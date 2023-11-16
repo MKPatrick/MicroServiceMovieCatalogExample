@@ -8,15 +8,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DTO\MovieStatistics\**" />
+    <Content Remove="DTO\MovieStatistics\**" />
+    <EmbeddedResource Remove="DTO\MovieStatistics\**" />
+    <None Remove="DTO\MovieStatistics\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mapster" Version="7.4.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MovieRating.Domain\MovieRating.Domain.csproj" />
     <ProjectReference Include="..\MovieRating.Infrastructure\MovieRating.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DTO\MovieStatistics\" />
   </ItemGroup>
 
 </Project>

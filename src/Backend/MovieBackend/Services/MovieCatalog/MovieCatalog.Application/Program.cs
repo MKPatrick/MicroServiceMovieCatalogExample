@@ -17,6 +17,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+
 //Register Database
 builder.Services.AddDbContext<MovieDatabaseContext>(options =>
 {
@@ -33,8 +35,17 @@ builder.Services.AddTransient<IMovieRepository, MovieRepository>();
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 
 
-
 var app = builder.Build();
+
+
+using (var scope = app.Services.CreateScope())
+{
+	//Create Migration
+	var databaseContext = scope.ServiceProvider.GetService<MovieDatabaseContext>();
+	//SetupDatabase
+	await new DatabaseCheckupService(databaseContext).SetupDatabase();
+}
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

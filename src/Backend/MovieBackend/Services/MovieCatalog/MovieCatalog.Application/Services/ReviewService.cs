@@ -12,14 +12,16 @@ namespace MovieCatalog.Application.Services
 
 		public async Task<ICollection<RatingAverageDTO>> GetAverageRatingOfAllMovies()
 		{
-			var result = await movieRatingHttpClient.GetFromJsonAsync<ICollection<RatingAverageDTO>>(string.Empty);
+			var result = await movieRatingHttpClient.GetFromJsonAsync<ICollection<RatingAverageDTO>>("");
 			return result;
 		}
 
 		public async Task<RatingAverageDTO> GetAverageratingOfMovie(int ID)
 		{
-			var result = await movieRatingHttpClient.GetFromJsonAsync<RatingAverageDTO>($"/{ID}");
+			var result = await movieRatingHttpClient.GetFromJsonAsync<RatingAverageDTO>($"AverageMovieRating/{ID}");
 			return result;
 		}
+
+
 	}
 }

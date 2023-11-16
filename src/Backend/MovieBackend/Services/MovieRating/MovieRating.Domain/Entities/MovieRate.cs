@@ -6,5 +6,6 @@
 		public int MovieID { get; set; }
 		public MovieStar MovieRatedStar { get; set; }
 		public string Comment { get; set; }
+		public DateTime RatedTime { get; set; }
 	}
 }

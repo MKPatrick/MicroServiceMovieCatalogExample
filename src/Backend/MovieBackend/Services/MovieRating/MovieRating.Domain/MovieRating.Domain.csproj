@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\SharedKernel\SharedKernel.csproj" />
-    <ProjectReference Include="..\MovieRating.Application\MovieRating.Application.csproj" />
   </ItemGroup>
 
 </Project>
