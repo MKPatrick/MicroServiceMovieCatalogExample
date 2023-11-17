@@ -14,7 +14,7 @@ services:
         ports:
             - "8080:80"
         environment:
-            ConnectionStrings__DefaultConnection: "Data Source=/app/storage/Test.db"
+            ConnectionStrings__DefaultConnection: "Data Source=/app/storage/Catalog.db"
             ASPNETCORE_ENVIRONMENT: "Development"
             ASPNETCORE_HTTP_PORTS: "80"
             APIS__ReviewAPI: "http://moviereviewapplication:8080/api/v1/MovieRatings"
@@ -29,10 +29,21 @@ services:
         environment:
             ConnectionStrings__DefaultConnection: "Host=reviewdb;Port=3306;Database=ratings;UID=rootuser;PWD=test123"
             ASPNETCORE_ENVIRONMENT: "Development"
-            ASPNETCORE_HTTP_PORTS: "8080"
-            
+            ASPNETCORE_HTTP_PORTS: "8080"   
         volumes:
             - mca_data:/app/storage
+    moviestreamapplication:
+        image:  moviestreamingapplication:latest
+        depends_on:
+            - reviewdb
+        ports:
+            - "8083:8083"
+        environment:
+            ConnectionStrings__DefaultConnection: "Data Source=/app/storage/Stream.db"
+            ASPNETCORE_ENVIRONMENT: "Development"
+            ASPNETCORE_HTTP_PORTS: "8083"   
+        volumes:
+            - msa_data:/app/storage
     reviewdb:
         image: mariadb:latest
         ports:
@@ -48,3 +59,4 @@ services:
 volumes:
     db_data:
     mca_data:
+    msa_data:
