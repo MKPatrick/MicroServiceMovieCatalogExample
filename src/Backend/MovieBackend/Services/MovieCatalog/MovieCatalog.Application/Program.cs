@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 using MovieCatalog.Application.Factories;
@@ -6,13 +7,17 @@ using MovieCatalog.Domain.Contracts;
 using MovieCatalog.Infrastructure.Data;
 using MovieCatalog.Infrastructure.Repositories;
 using MovieCatalog.Infrastructure.UOW;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 //Setup mapster
 TypeAdapterConfig.GlobalSettings.Default.NameMatchingStrategy(NameMatchingStrategy.Flexible);
 
-
+builder.Services.AddFluentValidation(options=>
+{
+	options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+});
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

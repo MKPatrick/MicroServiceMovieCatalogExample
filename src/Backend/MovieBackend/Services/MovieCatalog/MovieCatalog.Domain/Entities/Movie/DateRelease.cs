@@ -6,9 +6,9 @@ namespace MovieCatalog.Domain.Entities.Movie
 {
 	public class DateRelease : ValueObject
 	{
-		public byte Day { get; set; }
-		public byte Month { get; set; }
-		public uint Year { get; set; }
+		public int Day { get; set; }
+		public int Month { get; set; }
+		public int Year { get; set; }
 
 		public override string ToString()
 		{
