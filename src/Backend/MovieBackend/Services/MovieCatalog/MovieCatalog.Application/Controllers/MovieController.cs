@@ -21,10 +21,20 @@ namespace MovieCatalog.Application.Controllers
 		[HttpGet]
 		public async Task<ActionResult<IEnumerable<GetMovieDTO>>> Get()
 		{
-			var result = await movieService.GetAllMovie();
-			var reviews = reviewService.GetAverageRatingOfAllMovies();
+			var result = await movieService.GetAllMovies();
+			var reviews = await reviewService.GetAverageRatingOfAllMovies();
 
-			return Ok(result);
+			var res = result
+				.Select(x =>
+				new GetMovieDTO(
+					x.ID,
+					x.Title,
+					x.Description,
+					x.ReleaseDate,
+					reviews.FirstOrDefault(y => y.MovieID == x.ID)?.RatingAverage ?? 0)
+				);
+
+			return Ok(res);
 		}
 
 		// GET api/<MovieController>/5
@@ -34,15 +44,17 @@ namespace MovieCatalog.Application.Controllers
 			var result = await movieService.GetMovie(id);
 			if (result == null)
 				return NotFound(new ProblemDetails() { Detail = "Movie was not found. Please check your ID" });
-			return Ok(result);
+			var reviewResult = await reviewService.GetAverageratingOfMovie(id);
+			var aggregatedResult = new GetMovieDTO(result.ID, result.Description, result.Description, result.ReleaseDate, reviewResult.RatingAverage);
+			return Ok(aggregatedResult);
 		}
 
 		// POST api/<MovieController>
 		[HttpPost]
 		public async Task<ActionResult<GetMovieDTO>> Post([FromBody] AddMovieDTO value)
 		{
-			await movieService.AddMovie(value);
-			return Created();
+			var createdMovie=await movieService.AddMovie(value);
+			return Created(string.Empty,createdMovie);
 		}
 
 		// PUT api/<MovieController>/5

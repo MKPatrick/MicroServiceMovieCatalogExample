@@ -21,7 +21,7 @@ namespace MovieRating.Application.Controllers
 		[HttpGet()]
 		public async Task<ActionResult<IEnumerable<GetMovieAverageRatingDTO>>> GetAllRatingsAverage()
 		{
-			return Ok(await movieRatingService.GetAllRatings());
+			return Ok(await movieRatingService.GetAllRatingsAverage());
 		}
 
 		// GET: api/<RatingController>

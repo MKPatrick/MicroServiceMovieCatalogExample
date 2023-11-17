@@ -20,10 +20,17 @@ namespace MovieRating.Application.Services
 			return result.Adapt<IEnumerable<GetMovieRatingDTO>>();
 		}
 
-		public async Task<IEnumerable<GetMovieAverageRatingDTO>> GetAllRatings()
+		public async Task<IEnumerable<GetMovieAverageRatingDTO>> GetAllRatingsAverage()
 		{
-			var result = await movieRatingRepository.GetAllRates().ToListAsync();
-			return result.Adapt<IEnumerable<GetMovieAverageRatingDTO>>();
+			var ratings = await movieRatingRepository
+				.GetAllRates()
+				.GroupBy(x => x.MovieID)
+				.Select(x => new GetMovieAverageRatingDTO(
+					x.Key,
+					x.Average(y => (int)y.MovieRatedStar)))
+				.ToArrayAsync();
+
+			return ratings;
 		}
 
 		public async Task<GetMovieAverageRatingDTO> GetAverageRating(int MovieID)

@@ -9,6 +9,7 @@ services:
             ConnectionStrings__DefaultConnection: "Data Source=/app/storage/Test.db"
             ASPNETCORE_ENVIRONMENT: "Development"
             ASPNETCORE_HTTP_PORTS: "80"
+            APIS__ReviewAPI: "http://moviereviewapplication:8080/api/v1/MovieRatings"
         volumes:
             - mca_data:/app/storage
     moviereviewapplication:
@@ -21,6 +22,7 @@ services:
             ConnectionStrings__DefaultConnection: "Host=reviewdb;Port=3306;Database=ratings;UID=rootuser;PWD=test123"
             ASPNETCORE_ENVIRONMENT: "Development"
             ASPNETCORE_HTTP_PORTS: "8080"
+            
         volumes:
             - mca_data:/app/storage
     reviewdb:

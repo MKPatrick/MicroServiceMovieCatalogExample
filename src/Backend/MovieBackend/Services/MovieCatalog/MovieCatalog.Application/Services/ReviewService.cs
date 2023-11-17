@@ -12,7 +12,8 @@ namespace MovieCatalog.Application.Services
 
 		public async Task<ICollection<RatingAverageDTO>> GetAverageRatingOfAllMovies()
 		{
-			var result = await movieRatingHttpClient.GetFromJsonAsync<ICollection<RatingAverageDTO>>("");
+			var result = (await movieRatingHttpClient.GetFromJsonAsync<ICollection<RatingAverageDTO>>(""))
+				?? Array.Empty<RatingAverageDTO>();
 			return result;
 		}
 

@@ -23,7 +23,7 @@ namespace MovieCatalog.Application.Services
 		}
 
 
-		public async Task<IEnumerable<GetMovieDTO>> GetAllMovie()
+		public async Task<IEnumerable<GetMovieDTO>> GetAllMovies()
 		{
 			var result = await movieRepository.GetAllAsync();
 			return result.Adapt<IEnumerable<GetMovieDTO>>();

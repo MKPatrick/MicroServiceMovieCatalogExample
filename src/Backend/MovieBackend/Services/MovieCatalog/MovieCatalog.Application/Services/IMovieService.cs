@@ -6,7 +6,7 @@ namespace MovieCatalog.Application.Services
 	{
 		Task<GetMovieDTO> AddMovie(AddMovieDTO addMovieDTO);
 		Task DeleteMovie(int id);
-		Task<IEnumerable<GetMovieDTO>> GetAllMovie();
+		Task<IEnumerable<GetMovieDTO>> GetAllMovies();
 		Task<GetMovieDTO> GetMovie(int id);
 		Task UpdateMovie(UpdateMovieDTO updateMovieDTO);
 	}

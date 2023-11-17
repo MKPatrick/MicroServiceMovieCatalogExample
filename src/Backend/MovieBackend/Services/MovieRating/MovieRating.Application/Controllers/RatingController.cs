@@ -31,7 +31,7 @@ namespace MovieRating.Application.Controllers
 		{
 			var result = await ratingService.GetRating(id);
 			if (result == null)
-				return NotFound();
+				return NotFound(new ProblemDetails() { Detail = "Review was not found. Please check your ID" });
 			return Ok(result);
 		}
 
@@ -39,8 +39,8 @@ namespace MovieRating.Application.Controllers
 		[HttpPost]
 		public async Task<ActionResult> Post([FromBody] AddRatingDTO value)
 		{
-			await ratingService.AddRating(value);
-			return Created();
+			var createdRaiting = await ratingService.AddRating(value);
+			return Created("", createdRaiting);
 		}
 
 		// PUT api/<MovieRatingController>/5
