@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 using MovieRating.Application.Services;
@@ -5,13 +6,17 @@ using MovieRating.Domain.Contracts;
 using MovieRating.Infrastructure.Data;
 using MovieRating.Infrastructure.Repository;
 using MovieRating.Infrastructure.UOW;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 //Setup mapster
 TypeAdapterConfig.GlobalSettings.Default.NameMatchingStrategy(NameMatchingStrategy.Flexible);
 
-
+builder.Services.AddFluentValidation(options =>
+{
+	options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+});
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
