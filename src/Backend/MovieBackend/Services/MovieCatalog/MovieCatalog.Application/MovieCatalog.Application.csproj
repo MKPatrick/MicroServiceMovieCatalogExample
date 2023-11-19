@@ -33,4 +33,8 @@
     <ProjectReference Include="..\MovieCatalog.Infrastructure\MovieCatalog.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\MovieImages\" />
+  </ItemGroup>
+
 </Project>

@@ -2,6 +2,6 @@
 
 namespace MovieCatalog.Application.DTO.Movie
 {
-	public record GetMovieDTO(int ID, string Title, string Description, DateRelease ReleaseDate, double averageRating);
+	public record GetMovieDTO(int ID, string MovieImage,string Title, string Description, DateRelease ReleaseDate, double averageRating);
 }
 

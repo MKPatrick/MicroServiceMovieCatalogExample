@@ -9,6 +9,7 @@ namespace MovieCatalog.Infrastructure.Data
 		{
 			modelBuilder.Entity<Movie>().Property(x => x.Title).IsRequired();
 			modelBuilder.Entity<Movie>().HasKey(x => x.ID);
+			modelBuilder.Entity<Movie>().Property(x => x.MovieImage).IsRequired(false);
 			modelBuilder.Entity<Movie>().OwnsOne(x => x.ReleaseDate);
 		}
 	}

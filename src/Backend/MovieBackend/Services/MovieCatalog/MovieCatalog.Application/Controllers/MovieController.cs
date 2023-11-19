@@ -28,6 +28,7 @@ namespace MovieCatalog.Application.Controllers
 				.Select(x =>
 				new GetMovieDTO(
 					x.ID,
+						x.MovieImage,
 					x.Title,
 					x.Description,
 					x.ReleaseDate,
@@ -45,13 +46,13 @@ namespace MovieCatalog.Application.Controllers
 			if (result == null)
 				return NotFound(new ProblemDetails() { Detail = "Movie was not found. Please check your ID" });
 			var reviewResult = await reviewService.GetAverageratingOfMovie(id);
-			var aggregatedResult = new GetMovieDTO(result.ID, result.Description, result.Description, result.ReleaseDate, reviewResult.RatingAverage);
+			var aggregatedResult = new GetMovieDTO(result.ID,result.MovieImage, result.Description, result.Description, result.ReleaseDate, reviewResult.RatingAverage);
 			return Ok(aggregatedResult);
 		}
 
 		// POST api/<MovieController>
 		[HttpPost]
-		public async Task<ActionResult<GetMovieDTO>> Post([FromBody] AddMovieDTO value)
+		public async Task<ActionResult<GetMovieDTO>> Post( [FromForm]AddMovieDTO value)
 		{
 			var createdMovie=await movieService.AddMovie(value);
 			return Created(string.Empty,createdMovie);
@@ -59,7 +60,7 @@ namespace MovieCatalog.Application.Controllers
 
 		// PUT api/<MovieController>/5
 		[HttpPut()]
-		public async Task<ActionResult> Put([FromBody] UpdateMovieDTO value)
+		public async Task<ActionResult> Put([FromForm] UpdateMovieDTO value)
 		{
 			await movieService.UpdateMovie(value);
 			return Ok();

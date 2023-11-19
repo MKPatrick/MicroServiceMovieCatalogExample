@@ -2,5 +2,5 @@
 
 namespace MovieCatalog.Application.DTO.Movie
 {
-	public record AddMovieDTO(string Title, string Description, DateRelease ReleaseDate);
+	public record AddMovieDTO(string Title, string Description, DateRelease ReleaseDate, IFormFile? MovieImage);
 }
