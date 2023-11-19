@@ -56,7 +56,11 @@ services:
             MYSQL_DATABASE: ratings
             MYSQL_PASSWORD: test123
             MYSQL_ROOT_PASSWORD: test123
-            
+    rabbitmq:
+        image:  rabbitmq:management-alpine
+        ports:
+            - "15672:15672"
+
 volumes:
     db_data:
     mca_data:
