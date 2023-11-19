@@ -24,4 +24,6 @@ FROM base AS final
 WORKDIR /app
 RUN mkdir /app/storage
 COPY --from=publish /app/publish .
+USER root
+RUN chown -R app:app /app/wwwroot
 ENTRYPOINT ["dotnet", "MovieCatalog.Application.dll"]

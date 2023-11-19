@@ -20,6 +20,7 @@ services:
             APIS__ReviewAPI: "http://moviereviewapplication:8080/api/v1/MovieRatings"
         volumes:
             - mca_data:/app/storage
+            - mca_wwwroot:/app/wwwroot   
     moviereviewapplication:
         image:  movieratingapplication:latest
         depends_on:
@@ -59,4 +60,5 @@ services:
 volumes:
     db_data:
     mca_data:
+    mca_wwwroot:
     msa_data:
