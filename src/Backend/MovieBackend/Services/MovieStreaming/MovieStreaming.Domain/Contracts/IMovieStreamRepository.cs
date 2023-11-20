@@ -10,5 +10,6 @@ namespace MovieStreaming.Domain.Contracts
 {
 	public interface IMovieStreamRepository : IBaseRepository<MovieStream>
 	{
+		Task DeleteStreamsByMovieID(int movieID);
 	}
 }

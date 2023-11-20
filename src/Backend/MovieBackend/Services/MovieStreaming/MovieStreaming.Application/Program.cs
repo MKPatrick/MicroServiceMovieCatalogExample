@@ -1,6 +1,8 @@
 using Mapster;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using MovieStreaming.Application.Configuration;
+using MovieStreaming.Application.Messaging;
 using MovieStreaming.Domain.Contracts;
 using MovieStreaming.Infrastructure.Data;
 using MovieStreaming.Infrastructure.Repositories;
@@ -11,6 +13,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 //Setup mapster
 TypeAdapterConfig.GlobalSettings.Default.NameMatchingStrategy(NameMatchingStrategy.Flexible);
+builder.Services.Configure<RabbitMQConfiguration>(
+	builder.Configuration.GetSection(RabbitMQConfiguration.Position));
+builder.Services.AddHostedService<MovieDeletedConsumer>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

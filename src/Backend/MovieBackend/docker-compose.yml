@@ -45,6 +45,7 @@ services:
             ConnectionStrings__DefaultConnection: "Data Source=/app/storage/Stream.db"
             ASPNETCORE_ENVIRONMENT: "Development"
             ASPNETCORE_HTTP_PORTS: "8083"   
+            RabbitMQConfiguration__HostName: "rabbitmq"
         volumes:
             - msa_data:/app/storage
     reviewdb:
