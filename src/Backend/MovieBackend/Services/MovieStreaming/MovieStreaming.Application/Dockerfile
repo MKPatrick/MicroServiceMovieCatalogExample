@@ -24,5 +24,9 @@ RUN dotnet publish "./MovieStreaming.Application.csproj" -c $BUILD_CONFIGURATION
 FROM base AS final
 WORKDIR /app
 RUN mkdir /app/storage
+RUN mkdir /app/wwwroot
 COPY --from=publish /app/publish .
+USER root
+RUN chown -R app:app /app/wwwroot
+USER app
 ENTRYPOINT ["dotnet", "MovieStreaming.Application.dll"]

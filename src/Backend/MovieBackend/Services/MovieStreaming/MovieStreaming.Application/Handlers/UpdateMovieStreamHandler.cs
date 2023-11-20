@@ -1,8 +1,10 @@
 ﻿using Mapster;
 using MediatR;
 using MovieStreaming.Application.Commands;
+using MovieStreaming.Application.Helper;
 using MovieStreaming.Domain.Contracts;
 using MovieStreaming.Domain.Entities;
+using System;
 
 namespace MovieStreaming.Application.Handlers
 {
@@ -10,16 +12,22 @@ namespace MovieStreaming.Application.Handlers
 	{
 		private readonly IMovieStreamRepository movieStreamRepository;
 		private readonly IUnitOfWork unitOfWork;
+		private readonly IFileCreationHelper fileCreationHelper;
 
-		public UpdateMovieStreamHandler(IMovieStreamRepository movieStreamRepository, IUnitOfWork unitOfWork)
+
+		public UpdateMovieStreamHandler(IMovieStreamRepository movieStreamRepository, IUnitOfWork unitOfWork, IFileCreationHelper fileCreationHelper)
 		{
 			this.movieStreamRepository = movieStreamRepository;
 			this.unitOfWork = unitOfWork;
+			this.fileCreationHelper = fileCreationHelper;
 		}
 		public async Task Handle(UpdateMovieStreamCommand request, CancellationToken cancellationToken)
 		{
+			var movieFromDB = await movieStreamRepository.GetByIdAsync(request.ID,false);
+			await fileCreationHelper.AddNewStream(request.FormMovieFile,Path.GetFileNameWithoutExtension(movieFromDB.MovieFile));
 			await movieStreamRepository.UpdateAsync(request.Adapt<MovieStream>());
 			await unitOfWork.SaveChangesAsync();
 		}
+
 	}
 }

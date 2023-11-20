@@ -5,13 +5,14 @@ namespace MovieStreaming.Application.Commands
 {
 	public class AddMovieStreamCommand : IRequest<GetMovieStreamDTO>
 	{
-		public int MovieID { get; private set; }
-		public string MovieFile { get; private set; }
+		public IFormFile FormMovieFile { get; }
 
-		public AddMovieStreamCommand(int movieID, string movieFile)
+		public int MovieID { get; private set; }
+
+		public AddMovieStreamCommand(int movieID, IFormFile FormMovieFile)
 		{
 			this.MovieID = movieID;
-			this.MovieFile = movieFile;
+			this.FormMovieFile = FormMovieFile;
 		}
 
 	}

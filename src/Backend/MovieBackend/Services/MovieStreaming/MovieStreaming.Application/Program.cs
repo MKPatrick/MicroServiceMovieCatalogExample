@@ -2,6 +2,7 @@ using Mapster;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using MovieStreaming.Application.Configuration;
+using MovieStreaming.Application.Helper;
 using MovieStreaming.Application.Messaging;
 using MovieStreaming.Domain.Contracts;
 using MovieStreaming.Infrastructure.Data;
@@ -21,7 +22,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddTransient<IFileCreationHelper, FileCreationHelper>();
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<IMovieStreamRepository, MovieStreamRepository>();
 //Register Database
@@ -50,6 +51,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.UseStaticFiles();
 app.MapControllers();
 
 app.Run();

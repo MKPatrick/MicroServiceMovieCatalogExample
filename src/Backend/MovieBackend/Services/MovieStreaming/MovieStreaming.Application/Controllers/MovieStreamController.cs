@@ -40,18 +40,18 @@ namespace MovieStreaming.Application.Controllers
 
 		// POST api/<MovieStreamController>
 		[HttpPost]
-		public async Task<ActionResult> Post([FromBody] AddMovieStreamDTO value)
+		public async Task<ActionResult> Post([FromForm] AddMovieStreamDTO value)
 		{
-			await mediator.Send(new AddMovieStreamCommand(value.MovieID, value.MovieFile));
-			return Created();
+			var result = await mediator.Send(new AddMovieStreamCommand(value.MovieID, value.FormMovieFile));
+			return Ok(result);
 
 		}
 
 		// PUT api/<MovieStreamController>/5
 		[HttpPut("{id}")]
-		public async Task<ActionResult> Put([FromBody] UpdateMovieStreamDTO value)
+		public async Task<ActionResult> Put([FromForm] UpdateMovieStreamDTO value)
 		{
-			await mediator.Send(new UpdateMovieStreamCommand(value.ID, value.MovieID, value.MovieFile));
+			await mediator.Send(new UpdateMovieStreamCommand(value.ID, value.FormMovieFile));
 			return Ok();
 		}
 

@@ -29,4 +29,8 @@
     <ProjectReference Include="..\MovieStreaming.Infrastructure\MovieStreaming.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 </Project>

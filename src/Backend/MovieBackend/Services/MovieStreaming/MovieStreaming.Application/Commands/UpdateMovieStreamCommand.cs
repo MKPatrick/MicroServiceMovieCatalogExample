@@ -4,15 +4,15 @@ namespace MovieStreaming.Application.Commands
 {
 	public class UpdateMovieStreamCommand : IRequest
 	{
-		public  int ID { get; private set; }
-		public int MovieID { get; private set; }
-		public string MovieFile { get; private set; }
+		public int ID { get; private set; }
+		public IFormFile FormMovieFile { get; }
 
-		public UpdateMovieStreamCommand(int ID, int movieID, string movieFile)
-        {
+		public UpdateMovieStreamCommand(int ID, IFormFile FormMovieFile)
+		{
 			this.ID = ID;
-			this.MovieID = movieID;
-			this.MovieFile = movieFile;
+
+			this.FormMovieFile = FormMovieFile;
+
 		}
-    }
+	}
 }
