@@ -15,10 +15,10 @@ namespace MovieRating.Infrastructure.Repository
 		private readonly MovieRatingDatabaseContext movieRatingDatabaseContext;
 
 		public MovieRateRepository(MovieRatingDatabaseContext movieRatingDatabaseContext)
-        {
+		{
 			this.movieRatingDatabaseContext = movieRatingDatabaseContext;
 		}
-        public  IQueryable<MovieRate> GetRatesFromMovie(int MovieID)
+		public IQueryable<MovieRate> GetRatesFromMovie(int MovieID)
 		{
 			return movieRatingDatabaseContext.MovieRates.Where(x => x.MovieID == MovieID);
 		}
@@ -26,6 +26,11 @@ namespace MovieRating.Infrastructure.Repository
 		public IQueryable<MovieRate> GetAllRates()
 		{
 			return movieRatingDatabaseContext.MovieRates;
+		}
+
+		public async Task DeleteRates(int MovieID)
+		{
+			movieRatingDatabaseContext.MovieRates.RemoveRange(GetRatesFromMovie(MovieID));
 		}
 	}
 }

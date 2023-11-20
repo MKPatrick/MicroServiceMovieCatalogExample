@@ -1,6 +1,7 @@
 ﻿using Mapster;
 using MovieCatalog.Application.DTO.Movie;
 using MovieCatalog.Application.Helper;
+using MovieCatalog.Application.Messaging;
 using MovieCatalog.Domain.Contracts;
 using MovieCatalog.Domain.Entities.Movie;
 
@@ -11,12 +12,14 @@ namespace MovieCatalog.Application.Services
 		private readonly IMovieRepository movieRepository;
 		private readonly IUnitOfWork unitOfWork;
 		private readonly IWebHostEnvironment environment;
+		private readonly IMovieDeleteProduce movieDeleteProduce;
 
-		public MovieService(IMovieRepository movieRepository, IUnitOfWork unitOfWork, IWebHostEnvironment environment)
+		public MovieService(IMovieRepository movieRepository, IUnitOfWork unitOfWork, IWebHostEnvironment environment, IMovieDeleteProduce movieDeleteProduce)
 		{
 			this.movieRepository = movieRepository;
 			this.unitOfWork = unitOfWork;
 			this.environment = environment;
+			this.movieDeleteProduce = movieDeleteProduce;
 		}
 
 		public async Task<GetMovieDTO> GetMovie(int id)
@@ -60,6 +63,7 @@ namespace MovieCatalog.Application.Services
 				}
 				await movieRepository.DeleteAsync(id);
 				await unitOfWork.SaveChangesAsync();
+				movieDeleteProduce.SendMovieDeleteProduce(id);
 			}
 			catch (Exception ex)
 			{

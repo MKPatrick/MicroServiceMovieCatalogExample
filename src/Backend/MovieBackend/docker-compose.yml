@@ -18,6 +18,7 @@ services:
             ASPNETCORE_ENVIRONMENT: "Development"
             ASPNETCORE_HTTP_PORTS: "80"
             APIS__ReviewAPI: "http://moviereviewapplication:8080/api/v1/MovieRatings"
+            RabbitMQConfiguration__HostName: "rabbitmq"
         volumes:
             - mca_data:/app/storage
             - mca_wwwroot:/app/wwwroot   
@@ -31,6 +32,7 @@ services:
             ConnectionStrings__DefaultConnection: "Host=reviewdb;Port=3306;Database=ratings;UID=rootuser;PWD=test123"
             ASPNETCORE_ENVIRONMENT: "Development"
             ASPNETCORE_HTTP_PORTS: "8080"   
+            RabbitMQConfiguration__HostName: "rabbitmq"
         volumes:
             - mca_data:/app/storage
     moviestreamapplication:
@@ -60,6 +62,7 @@ services:
         image:  rabbitmq:management-alpine
         ports:
             - "15672:15672"
+            - "5672:5672"
 
 volumes:
     db_data:

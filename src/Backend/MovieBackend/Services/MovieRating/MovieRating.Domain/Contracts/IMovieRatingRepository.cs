@@ -6,5 +6,7 @@ namespace MovieRating.Domain.Contracts
 	{
 		IQueryable<MovieRate> GetRatesFromMovie(int MovieID);
 		IQueryable<MovieRate> GetAllRates();
+
+		Task DeleteRates(int MovieID);
 	}
 }

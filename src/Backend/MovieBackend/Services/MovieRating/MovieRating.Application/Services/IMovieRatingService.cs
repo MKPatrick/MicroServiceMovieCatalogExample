@@ -7,5 +7,6 @@ namespace MovieRating.Application.Services
 		Task<GetMovieAverageRatingDTO> GetAverageRating(int MovieID);
 		Task<IEnumerable<GetMovieAverageRatingDTO>> GetAllRatingsAverage();
 		Task<IEnumerable<GetMovieRatingDTO>> GetRatingFromMovie(int ID);
+		Task DeleteRatingsFromMovie(int MovieID);
 	}
 }

@@ -8,16 +8,25 @@ namespace MovieRating.Application.Services
 	public class MovieRatingService : IMovieRatingService
 	{
 		private readonly IMovieRatingRepository movieRatingRepository;
+		private readonly IUnitOfWork unitOfWork;
 
-		public MovieRatingService(IMovieRatingRepository movieRatingRepository)
+		public MovieRatingService(IMovieRatingRepository movieRatingRepository, IUnitOfWork unitOfWork)
 		{
 			this.movieRatingRepository = movieRatingRepository;
+			this.unitOfWork = unitOfWork;
 		}
 
 		public async Task<IEnumerable<GetMovieRatingDTO>> GetRatingFromMovie(int ID)
 		{
 			var result = await movieRatingRepository.GetRatesFromMovie(ID).ToListAsync();
 			return result.Adapt<IEnumerable<GetMovieRatingDTO>>();
+		}
+
+		public async Task DeleteRatingsFromMovie(int MovieID)
+		{
+
+			await movieRatingRepository.DeleteRates(MovieID);
+			await unitOfWork.SaveChangesAsync();
 		}
 
 		public async Task<IEnumerable<GetMovieAverageRatingDTO>> GetAllRatingsAverage()

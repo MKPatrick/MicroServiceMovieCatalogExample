@@ -1,6 +1,8 @@
 using FluentValidation.AspNetCore;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
+using MovieRating.Application.Configuration;
+using MovieRating.Application.Messaging;
 using MovieRating.Application.Services;
 using MovieRating.Domain.Contracts;
 using MovieRating.Infrastructure.Data;
@@ -18,6 +20,13 @@ builder.Services.AddFluentValidation(options =>
 	options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 });
 builder.Services.AddControllers();
+
+//RABITMQ
+
+builder.Services.AddHostedService<MovieDeletedConsumer>();
+builder.Services.Configure<RabbitMQConfiguration>(
+	builder.Configuration.GetSection(RabbitMQConfiguration.Position));
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -53,6 +62,9 @@ using (var scope = app.Services.CreateScope())
 	var databaseContext = scope.ServiceProvider.GetService<MovieRatingDatabaseContext>();
 	//SetupDatabase
 	await new DatabaseCheckupService(databaseContext).SetupDatabase();
+
+	var movieDeleteConsumer = scope.ServiceProvider.GetService<MovieDeletedConsumer>();
+
 }
 
 // Configure the HTTP request pipeline.

@@ -1,7 +1,9 @@
 using FluentValidation.AspNetCore;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
+using MovieCatalog.Application.Configuration;
 using MovieCatalog.Application.Factories;
+using MovieCatalog.Application.Messaging;
 using MovieCatalog.Application.Services;
 using MovieCatalog.Domain.Contracts;
 using MovieCatalog.Infrastructure.Data;
@@ -14,7 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
 //Setup mapster
 TypeAdapterConfig.GlobalSettings.Default.NameMatchingStrategy(NameMatchingStrategy.Flexible);
 
-builder.Services.AddFluentValidation(options=>
+builder.Services.AddFluentValidation(options =>
 {
 	options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 });
@@ -30,6 +32,11 @@ builder.Services.AddDbContext<MovieDatabaseContext>(options =>
 	options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+builder.Services.Configure<RabbitMQConfiguration>(
+	builder.Configuration.GetSection(RabbitMQConfiguration.Position));
+
+//register Rabbitmq
+builder.Services.AddScoped<IMovieDeleteProduce, MovieDeleteProduce>();
 
 //Register Services
 builder.Services.AddTransient<IMovieService, MovieService>();
