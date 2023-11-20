@@ -2,6 +2,7 @@ version: "3.9"
 
 services:
     moviegateway:
+        restart: unless-stopped
         image:  movieapigateway:latest
         ports:
             - "8082:8082"
@@ -10,6 +11,7 @@ services:
             ASPNETCORE_HTTP_PORTS: "8082"
    
     moviecatalogapplication:
+        restart: unless-stopped
         image:  moviecatalogapplication:latest
         ports:
             - "8080:80"
@@ -23,9 +25,11 @@ services:
             - mca_data:/app/storage
             - mca_wwwroot:/app/wwwroot   
     moviereviewapplication:
+        restart: unless-stopped
         image:  movieratingapplication:latest
         depends_on:
             - reviewdb
+            - rabbitmq
         ports:
             - "8081:8080"
         environment:
@@ -36,9 +40,10 @@ services:
         volumes:
             - mca_data:/app/storage
     moviestreamapplication:
+        restart: unless-stopped
         image:  moviestreamingapplication:latest
         depends_on:
-            - reviewdb
+            - rabbitmq
         ports:
             - "8083:8083"
         environment:
@@ -49,6 +54,7 @@ services:
         volumes:
             - msa_data:/app/storage
     reviewdb:
+        restart: unless-stopped
         image: mariadb:latest
         ports:
             - "3307:3306"
@@ -60,6 +66,7 @@ services:
             MYSQL_PASSWORD: test123
             MYSQL_ROOT_PASSWORD: test123
     rabbitmq:
+        restart: unless-stopped
         image:  rabbitmq:management-alpine
         ports:
             - "15672:15672"
