@@ -1,4 +1,5 @@
-﻿using MovieStreaming.Domain.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using MovieStreaming.Domain.Contracts;
 using MovieStreaming.Domain.Entities;
 using MovieStreaming.Infrastructure.Data;
 
@@ -17,6 +18,11 @@ namespace MovieStreaming.Infrastructure.Repositories
 		{
 			context.MovieStreams.RemoveRange(context.MovieStreams.Where(x => x.MovieID == movieID));
 			return Task.CompletedTask;
+		}
+
+		public Task<MovieStream?> GetStreamForMovieID(int movieID)
+		{
+			return context.MovieStreams.FirstOrDefaultAsync(x => x.MovieID == movieID);
 		}
 	}
 }
