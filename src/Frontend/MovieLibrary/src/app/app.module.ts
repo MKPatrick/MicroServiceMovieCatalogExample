@@ -10,11 +10,13 @@ import { MovieService } from './services/movie.service';
 import { StreamService } from './services/stream.service';
 import { RatingService } from './services/rating.service';
 import { MovielistComponent } from './components/movielist/movielist/movielist.component';
+import { StreamComponent } from './components/Stream/Stream.component';
+import { MoviedetailsComponent } from './components/moviedetails/moviedetails.component';
 
 @NgModule({
   declarations: [	
     AppComponent,
-      MoviecardComponent, MovielistComponent
+      MoviecardComponent, MovielistComponent, StreamComponent, MoviedetailsComponent
    ],
   imports: [
     BrowserModule,HttpClientModule,

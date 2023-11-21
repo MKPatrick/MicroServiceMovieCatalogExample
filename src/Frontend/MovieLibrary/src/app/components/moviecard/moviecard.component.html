@@ -1,7 +1,14 @@
-<div class="card shadow-sm">
-  <img src="https://m.media-amazon.com/images/I/81IrvFQrwKL._AC_UF894,1000_QL80_.jpg" class="card-img-top " alt="Movie Image">
-  <div class="card-body text-light  w-100">
-    <h5 class="card-title">Harry Potter</h5>
+<div class="card shadow-sm mt-3 grow">
+<a [routerLink]="['/MovieDetails', movie.id]"> 
+  <img  src="https://m.media-amazon.com/images/I/91MteSqsrJL._AC_UF894,1000_QL80_.jpg" class="movieIMG" alt="Movie Image">
+  <div class="play" style="background-color: red;">
+   
+    <img class="play"  src="/assets/playbutton.svg" />
 
+  </div>
+
+  <p class="rating font-weight-bold ">⭐<b>3.5</b></p>
+
+</a>
 </div>
-</div>
+

@@ -1,0 +1,12 @@
+
+
+<div *ngIf="stream!=null">
+<video width="90%" height="90%" controls>
+  <source src={{stream.movieFile}} type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+</div>
+
+<div *ngIf="stream==undefined">
+<p>No Stream found</p>
+</div>
