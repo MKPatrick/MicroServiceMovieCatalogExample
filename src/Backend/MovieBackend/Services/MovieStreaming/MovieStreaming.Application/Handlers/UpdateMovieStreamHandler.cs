@@ -24,7 +24,7 @@ namespace MovieStreaming.Application.Handlers
 		public async Task Handle(UpdateMovieStreamCommand request, CancellationToken cancellationToken)
 		{
 			var movieFromDB = await movieStreamRepository.GetByIdAsync(request.ID,false);
-			await fileCreationHelper.AddNewStream(request.FormMovieFile,Path.GetFileNameWithoutExtension(movieFromDB.MovieFile));
+			await fileCreationHelper.AddNewStream(request.FormMovieFile,"Streams/" +Path.GetFileNameWithoutExtension(movieFromDB.MovieFile));
 			await movieStreamRepository.UpdateAsync(request.Adapt<MovieStream>());
 			await unitOfWork.SaveChangesAsync();
 		}
