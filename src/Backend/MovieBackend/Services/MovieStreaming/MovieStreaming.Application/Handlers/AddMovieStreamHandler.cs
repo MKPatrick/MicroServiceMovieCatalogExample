@@ -25,7 +25,7 @@ namespace MovieStreaming.Application.Handlers
 		}
 		public async Task<GetMovieStreamDTO> Handle(AddMovieStreamCommand request, CancellationToken cancellationToken)
 		{
-			string movieFileName = Guid.NewGuid().ToString() + ".mp4";
+			string movieFileName = "Streams/" + Guid.NewGuid().ToString() + ".mp4";
 			var path = await fileCreationHelper.AddNewStream(request.FormMovieFile, movieFileName);
 			var requestToAdd = request.Adapt<MovieStream>();
 			requestToAdd.MovieFile = path;
