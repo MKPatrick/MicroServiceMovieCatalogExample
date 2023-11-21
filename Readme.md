@@ -39,8 +39,12 @@ Can be configured with appsettings.json in each project or with Environment vari
 
 ### Endpoints
 With the current ocelot configuration following endpoints are exposed:
-/api/m/{everything} => MovieCatalog
-/MovieImages/ => Get movie images from MovieCatalog volume
-/api/r/ => MovieReviewA
-/api/s/ => MovieStream
-/Streams => Get movie streams from MovieStreams volume
+- /api/m/{everything} => MovieCatalog
+
+- /api/r/{everything} => MovieReviewA
+
+- /api/s/{everything} => MovieStream
+
+- /MovieImages/{everything} => Get movie images from MovieCatalog volume
+
+- /Streams/{everything} => Get movie streams from MovieStreams volume
