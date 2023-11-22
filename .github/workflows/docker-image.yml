@@ -16,8 +16,24 @@ jobs:
         uses: docker/setup-buildx-action@v1
       - name: Login into docker hub
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PW }}
-      - name: Build docker image
+      - name: Build Catalog docker image
         working-directory: src/Backend/MovieBackend
         run: docker build -t mkpatrick/moviecatalog -f Services/MovieCatalog/MovieCatalog.Application/Dockerfile .
-      - name: Push docker image
+      - name: Build Rating docker image
+        working-directory: src/Backend/MovieBackend
+        run: docker build -t mkpatrick/movierating -f Services/MovieCatalog/MovieRating/MovieRating.Application/Dockerfile .
+      - name: Build Stream docker image
+        working-directory: src/Backend/MovieBackend
+        run: docker build -t mkpatrick/moviestreaming -f Services/MovieCatalog/MovieStreaming/MovieStreaming.Application/Dockerfile .
+      - name: Build Gateway docker image
+        working-directory: src/Backend/MovieBackend
+        run: docker build -t mkpatrick/moviegateway -f Movie.API.Gateway/Dockerfile .
+
+      - name: Push Catalog docker image
         run: docker push mkpatrick/moviecatalog
+      - name: Push Rating docker image
+        run: docker push mkpatrick/movierating
+      - name: Push Streaming docker image
+        run: docker push mkpatrick/moviestreaming
+      - name: Push Gateway docker image
+        run: docker push mkpatrick/moviegateway
