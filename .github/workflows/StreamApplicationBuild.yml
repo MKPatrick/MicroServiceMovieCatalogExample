@@ -21,7 +21,7 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet src/Backend/MovieBackend/Services/MovieStreaming/MovieStreaming.Application restore
+      run: dotnet restore src/Backend/MovieBackend/Services/MovieStreaming/MovieStreaming.Application
     - name: Build
       run: dotnet build src/Backend/MovieBackend/Services/MovieStreaming/MovieStreaming.Application --no-restore
 
