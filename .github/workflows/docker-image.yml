@@ -21,10 +21,10 @@ jobs:
         run: docker build -t mkpatrick/moviecatalog -f Services/MovieCatalog/MovieCatalog.Application/Dockerfile .
       - name: Build Rating docker image
         working-directory: src/Backend/MovieBackend
-        run: docker build -t mkpatrick/movierating -f Services/MovieCatalog/MovieRating/MovieRating.Application/Dockerfile .
+        run: docker build -t mkpatrick/movierating -f Services/MovieRating/MovieRating.Application/Dockerfile .
       - name: Build Stream docker image
         working-directory: src/Backend/MovieBackend
-        run: docker build -t mkpatrick/moviestreaming -f Services/MovieCatalog/MovieStreaming/MovieStreaming.Application/Dockerfile .
+        run: docker build -t mkpatrick/moviestreaming -f Services/MovieStreaming/MovieStreaming.Application/Dockerfile .
       - name: Build Gateway docker image
         working-directory: src/Backend/MovieBackend
         run: docker build -t mkpatrick/moviegateway -f Movie.API.Gateway/Dockerfile .
