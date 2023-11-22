@@ -21,7 +21,7 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore src/Backend/MovieBackend/Services/MovieCatalog
+      run: dotnet restore src/Backend/MovieBackend/Services/MovieCatalog/MovieCatalog.Application
     - name: Build
-      run: dotnet build src/Backend/MovieBackend/Services/MovieCatalog --no-restore
+      run: dotnet build src/Backend/MovieBackend/Services/MovieCatalog/MovieCatalog.Application --no-restore
 
