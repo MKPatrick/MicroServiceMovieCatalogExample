@@ -1,4 +1,5 @@
 ﻿using MovieCatalog.Application.DTO.Rating;
+using System.Text.Json;
 
 namespace MovieCatalog.Application.Services
 {
@@ -19,8 +20,17 @@ namespace MovieCatalog.Application.Services
 
 		public async Task<RatingAverageDTO> GetAverageratingOfMovie(int ID)
 		{
-			var result = await movieRatingHttpClient.GetFromJsonAsync<RatingAverageDTO>($"AverageMovieRating/{ID}");
-			return result;
+			var result = await movieRatingHttpClient.GetAsync($"AverageMovieRating/{ID}");
+			if (result.IsSuccessStatusCode)
+			{
+				return JsonSerializer.Deserialize<RatingAverageDTO>(await result.Content.ReadAsStringAsync());
+			}
+			else
+			{
+				// no ratings available
+				return null;
+			}
+
 		}
 
 

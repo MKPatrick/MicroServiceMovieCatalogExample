@@ -13,14 +13,17 @@ import { MovielistComponent } from './components/movielist/movielist/movielist.c
 import { StreamComponent } from './components/Stream/Stream.component';
 import { MoviedetailsComponent } from './components/moviedetails/moviedetails.component';
 
+import { RatingComponent } from './components/rating/rating.component';
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [	
     AppComponent,
-      MoviecardComponent, MovielistComponent, StreamComponent, MoviedetailsComponent
+      MoviecardComponent, MovielistComponent, StreamComponent, MoviedetailsComponent, RatingComponent
    ],
   imports: [
     BrowserModule,HttpClientModule,
-    AppRoutingModule,
+    AppRoutingModule,FormsModule,
     NgbModule
   ],
   providers: [ MovieService, StreamService, RatingService],

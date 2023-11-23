@@ -53,6 +53,7 @@ services:
             RabbitMQConfiguration__HostName: "rabbitmq"
         volumes:
             - msa_data:/app/storage
+            - msa_wwwroot:/app/wwwroot   
     reviewdb:
         restart: unless-stopped
         image: mariadb:latest
@@ -77,3 +78,4 @@ volumes:
     mca_data:
     mca_wwwroot:
     msa_data:
+    msa_wwwroot:

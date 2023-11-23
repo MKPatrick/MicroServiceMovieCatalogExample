@@ -42,20 +42,21 @@ namespace MovieCatalog.Application.Controllers
 		[HttpGet("{id}")]
 		public async Task<ActionResult<GetMovieDTO>> Get(int id)
 		{
-			var result = await movieService.GetMovie(id);
-			if (result == null)
+			var movieResult = await movieService.GetMovie(id);
+			if (movieResult == null)
 				return NotFound(new ProblemDetails() { Detail = "Movie was not found. Please check your ID" });
 			var reviewResult = await reviewService.GetAverageratingOfMovie(id);
-			var aggregatedResult = new GetMovieDTO(result.ID,result.MovieImage, result.Description, result.Description, result.ReleaseDate, reviewResult.RatingAverage);
+			if (reviewResult == null) return movieResult;
+			var aggregatedResult = new GetMovieDTO(movieResult.ID, movieResult.MovieImage, movieResult.Description, movieResult.Description, movieResult.ReleaseDate, reviewResult.RatingAverage);
 			return Ok(aggregatedResult);
 		}
 
 		// POST api/<MovieController>
 		[HttpPost]
-		public async Task<ActionResult<GetMovieDTO>> Post( [FromForm]AddMovieDTO value)
+		public async Task<ActionResult<GetMovieDTO>> Post([FromForm] AddMovieDTO value)
 		{
-			var createdMovie=await movieService.AddMovie(value);
-			return Created(string.Empty,createdMovie);
+			var createdMovie = await movieService.AddMovie(value);
+			return Created(string.Empty, createdMovie);
 		}
 
 		// PUT api/<MovieController>/5
