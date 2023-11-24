@@ -1,6 +1,6 @@
 <div class="card shadow-sm mt-3 grow">
 <a [routerLink]="['/MovieDetails', movie.id]"> 
-  <img  src="https://m.media-amazon.com/images/I/91MteSqsrJL._AC_UF894,1000_QL80_.jpg" class="movieIMG" alt="Movie Image">
+  <img  [src]="baseURL+movie.movieImage" class="movieIMG" alt="Movie Image">
   <div class="play" style="background-color: red;">
    
     <img class="play"  src="/assets/playbutton.svg" />

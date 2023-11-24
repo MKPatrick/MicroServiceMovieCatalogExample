@@ -14,12 +14,12 @@ export class RatingService {
 
     getRatingsForMovie(id:number):Observable<Rating[]>
     {
-    return this.httpClient.get<Rating[]>(`${this.baseURL}/MovieRatings/Movie/${id}`);
+    return this.httpClient.get<Rating[]>(`${this.baseURL}MovieRatings/Movie/${id}`);
     }
     
     
     addRating(movieID:number,rating:Rating):Observable<any>
     {
-        return this.httpClient.post(`${this.baseURL}/Ratings`,rating);
+        return this.httpClient.post(`${this.baseURL}Ratings`,rating);
     }
 }

@@ -38,7 +38,7 @@ namespace MovieStreaming.Application.Controllers
 			return Ok(result);
 		}
 
-		[HttpGet("GetMovieStreamByMovieID{id}")]
+		[HttpGet("GetMovieStreamByMovieID/{id}")]
 		public async Task<ActionResult<GetMovieStreamDTO>> GetMovieStreamByMovieID(int id)
 		{
 			var result = await mediator.Send(new GetMovieStreambyMovieIdQuerry(id));

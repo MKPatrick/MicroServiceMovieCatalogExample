@@ -1,0 +1,50 @@
+
+
+
+
+
+<div class="row d-flex justify-content-center">
+  <div class="col-md-8 col-lg-6">
+    <div class="card text-white bg-dark shadow-sm" >
+      <div class="card-body p-4">
+        <div *ngIf="alreadySubmitted==false">
+ 
+        <div class="form-outline mb-4">
+          <form (ngSubmit)="submitNewRating()" #NewRatingForm >
+          <input required  type="text" [(ngModel)]="newRating.comment" name="comment" class="form-control" placeholder="Type rating" />
+          <input  required type="number" [(ngModel)]="newRating.movieRatedStar" class="form-control" min="1" max="5" name="rating" placeholder="Rating 1-5">
+          <input  class="btn btn-dark" value="+Add Rating" type="submit">
+        </form>
+        </div>
+
+      </div>
+        <div *ngIf="ratings==null">
+          No Ratings be the first one!
+            </div>
+
+            <div *ngIf="ratings!=null">
+              
+              <div class="card mt-2" *ngFor="let rating of ratings; ">
+                <div class="card-body">
+                  <p>{{rating.comment}}</p>
+      
+                  <div class="d-flex justify-content-between">
+                    <div class="d-flex flex-row align-items-center">
+                      <div  *ngFor="let rating of counter(rating.movieRatedStar); ">
+                        ⭐
+                        </div>
+                        
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+
+       
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
