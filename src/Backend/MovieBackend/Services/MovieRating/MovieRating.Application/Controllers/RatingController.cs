@@ -18,14 +18,13 @@ namespace MovieRating.Application.Controllers
 		}
 
 
-		// GET: api/<MovieRatingController>
 		[HttpGet]
 		public async Task<ActionResult<IEnumerable<GetRatingDTO>>> Get()
 		{
 			return Ok(await ratingService.GetRatings());
 		}
 
-		// GET api/<MovieRatingController>/5
+
 		[HttpGet("{id}")]
 		public async Task<ActionResult<GetRatingDTO>> Get(int id)
 		{
@@ -35,7 +34,7 @@ namespace MovieRating.Application.Controllers
 			return Ok(result);
 		}
 
-		// POST api/<MovieRatingController>
+
 		[HttpPost]
 		public async Task<ActionResult> Post([FromBody] AddRatingDTO value)
 		{
@@ -43,7 +42,7 @@ namespace MovieRating.Application.Controllers
 			return Created("", createdRaiting);
 		}
 
-		// PUT api/<MovieRatingController>/5
+
 		[HttpPut()]
 		public async Task<ActionResult> Put([FromBody] UpdateRatingDTO value)
 		{
@@ -51,7 +50,7 @@ namespace MovieRating.Application.Controllers
 			return Ok();
 		}
 
-		// DELETE api/<MovieRatingController>/5
+
 		[HttpDelete("{id}")]
 		public async Task<ActionResult> Delete(int id)
 		{

@@ -24,7 +24,6 @@ namespace MovieRating.Application.Services
 
 		public async Task DeleteRatingsFromMovie(int MovieID)
 		{
-
 			await movieRatingRepository.DeleteRates(MovieID);
 			await unitOfWork.SaveChangesAsync();
 		}

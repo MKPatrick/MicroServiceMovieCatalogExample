@@ -17,7 +17,6 @@ namespace MovieCatalog.Application.Controllers
 			this.reviewService = reviewService;
 		}
 
-		// GET: api/<MovieController>
 		[HttpGet]
 		public async Task<ActionResult<IEnumerable<GetMovieDTO>>> Get()
 		{
@@ -38,7 +37,7 @@ namespace MovieCatalog.Application.Controllers
 			return Ok(res);
 		}
 
-		// GET api/<MovieController>/5
+
 		[HttpGet("{id}")]
 		public async Task<ActionResult<GetMovieDTO>> Get(int id)
 		{
@@ -51,7 +50,7 @@ namespace MovieCatalog.Application.Controllers
 			return Ok(aggregatedResult);
 		}
 
-		// POST api/<MovieController>
+
 		[HttpPost]
 		public async Task<ActionResult<GetMovieDTO>> Post([FromForm] AddMovieDTO value)
 		{
@@ -59,7 +58,6 @@ namespace MovieCatalog.Application.Controllers
 			return Created(string.Empty, createdMovie);
 		}
 
-		// PUT api/<MovieController>/5
 		[HttpPut()]
 		public async Task<ActionResult> Put([FromForm] UpdateMovieDTO value)
 		{
@@ -67,7 +65,7 @@ namespace MovieCatalog.Application.Controllers
 			return Ok();
 		}
 
-		// DELETE api/<MovieController>/5
+
 		[HttpDelete("{id}")]
 		public async Task<ActionResult> Delete(int id)
 		{

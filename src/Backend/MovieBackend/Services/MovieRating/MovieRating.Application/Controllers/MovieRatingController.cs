@@ -17,21 +17,20 @@ namespace MovieRating.Application.Controllers
 		}
 
 
-		// GET: api/<RatingController>
 		[HttpGet()]
 		public async Task<ActionResult<IEnumerable<GetMovieAverageRatingDTO>>> GetAllRatingsAverage()
 		{
 			return Ok(await movieRatingService.GetAllRatingsAverage());
 		}
 
-		// GET: api/<RatingController>
+
 		[HttpGet("Movie/{MovieId}")]
 		public async Task<ActionResult<IEnumerable<GetMovieRatingDTO>>> GetMovieRatings(int MovieId)
 		{
 		return Ok(await	movieRatingService.GetRatingFromMovie(MovieId));
 		}
 
-		// GET: api/<RatingController>
+
 		[HttpGet("AverageMovieRating/{MovieId}")]
 		public async Task<ActionResult<GetMovieAverageRatingDTO>> GetMovieRatingAverage(int MovieId)
 		{

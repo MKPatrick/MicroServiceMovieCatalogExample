@@ -9,6 +9,8 @@ namespace MovieRating.Application.Messaging
 {
 	public class MovieDeletedConsumer : IHostedService
 	{
+		private const string exchangetopic = "movie.deleted";
+		private const string queuetopic = "rating.movie.deleted";
 		private readonly IServiceScopeFactory scopeFactory;
 		private readonly IOptions<RabbitMQConfiguration> rabbitMQConfiguration;
 		private IConnection connection;
@@ -34,11 +36,11 @@ namespace MovieRating.Application.Messaging
 			channel = connection.CreateChannel();
 
 			// Declare the exchange and queue
-			channel.ExchangeDeclare(exchange: "movie.deleted", type: ExchangeType.Fanout, durable: true);
-			channel.QueueDeclare(queue: "rating.movie.deleted", durable: true, exclusive: false, autoDelete: false, arguments: null);
+			channel.ExchangeDeclare(exchange: exchangetopic, type: ExchangeType.Fanout, durable: true);
+			channel.QueueDeclare(queue: queuetopic, durable: true, exclusive: false, autoDelete: false, arguments: null);
 
 			// Bind the queue to the exchange
-			channel.QueueBind(queue: "rating.movie.deleted", exchange: "movie.deleted", routingKey: "movie.deleted");
+			channel.QueueBind(queue: queuetopic, exchange: exchangetopic, routingKey: exchangetopic);
 
 			var consumer = new EventingBasicConsumer(channel);
 			consumer.Received += async (model, ea) =>
@@ -47,7 +49,7 @@ namespace MovieRating.Application.Messaging
 				var message = Encoding.UTF8.GetString(body);
 				await HandleDelete(Convert.ToInt32(message));
 			};
-			channel.BasicConsume(queue: "rating.movie.deleted",
+			channel.BasicConsume(queue: queuetopic,
 								 autoAck: true,
 								 consumer: consumer);
 		}
