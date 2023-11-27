@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Rating } from 'src/app/models/rating';
 import { RatingService } from 'src/app/services/rating.service';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-rating',

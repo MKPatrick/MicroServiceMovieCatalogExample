@@ -1,0 +1,33 @@
+<form (ngSubmit)="OnSubmit()" #NewMovieForm >
+<div class="modal-header">
+  <h4 class="modal-title">Add new Movie</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+
+    <div class="form-group">
+      <label for="title">Movie Title</label>
+      <input required id="title" type="text"  [(ngModel)]="addMovieModel.title" name="title" class="form-control" placeholder="Movie Title" />
+    </div>
+  
+    <div class="form-group">
+      <label for="description">Movie Description</label>
+      <input required id="description" type="text"  [(ngModel)]="addMovieModel.description" name="description" class="form-control" placeholder="Movie Description" />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Movie Thumbnail</label> <br/>
+      <input type="file" class="file-upload" onchange="console.log(event.target.files)">
+    </div>
+  
+   
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+  <button type="button" class="btn btn-dark" (click)="activeModal.close('Close click')">Create Movie</button>
+
+</div>
+
+
+</form>

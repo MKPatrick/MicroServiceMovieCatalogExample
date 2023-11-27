@@ -15,11 +15,14 @@ import { MoviedetailsComponent } from './components/moviedetails/moviedetails.co
 
 import { RatingComponent } from './components/rating/rating.component';
 import { FormsModule } from '@angular/forms';
+import { Addmovie } from './models/addmovie';
+import { AddmovieComponent } from './components/addmovie/addmovie.component';
 
 @NgModule({
   declarations: [	
     AppComponent,
-      MoviecardComponent, MovielistComponent, StreamComponent, MoviedetailsComponent, RatingComponent
+      MoviecardComponent, MovielistComponent, StreamComponent, MoviedetailsComponent, RatingComponent,
+      AddmovieComponent
    ],
   imports: [
     BrowserModule,HttpClientModule,
