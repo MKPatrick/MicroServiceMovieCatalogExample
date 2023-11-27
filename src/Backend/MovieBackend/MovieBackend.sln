@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernel", "SharedKerne
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Movie.API.Gateway", "Movie.API.Gateway\Movie.API.Gateway.csproj", "{2A962983-231B-4A33-902E-975C9E83CE95}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieCatalog.Test", "MovieCatalog.Test\MovieCatalog.Test.csproj", "{E4402362-CE49-4023-AAE2-E59790EF88B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,10 @@ Global
 		{2A962983-231B-4A33-902E-975C9E83CE95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A962983-231B-4A33-902E-975C9E83CE95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A962983-231B-4A33-902E-975C9E83CE95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4402362-CE49-4023-AAE2-E59790EF88B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4402362-CE49-4023-AAE2-E59790EF88B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4402362-CE49-4023-AAE2-E59790EF88B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4402362-CE49-4023-AAE2-E59790EF88B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -100,6 +106,7 @@ Global
 		{0BF6A0AB-DD8D-4118-BAE6-A6A662249898} = {222A922C-CB57-452F-8B44-676BF9887D35}
 		{D37AADC5-4A8B-418B-98FA-61A8800E4F91} = {222A922C-CB57-452F-8B44-676BF9887D35}
 		{7B5530E6-40B2-403F-AD94-7E96F54EAAEF} = {222A922C-CB57-452F-8B44-676BF9887D35}
+		{E4402362-CE49-4023-AAE2-E59790EF88B5} = {5B746D26-06D6-4769-BA19-D22D2B902AE2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A21A35D0-5E39-437C-ACB2-954F6ACB57B2}

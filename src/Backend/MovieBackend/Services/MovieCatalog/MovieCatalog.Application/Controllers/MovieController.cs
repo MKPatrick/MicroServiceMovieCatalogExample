@@ -46,7 +46,7 @@ namespace MovieCatalog.Application.Controllers
 				return NotFound(new ProblemDetails() { Detail = "Movie was not found. Please check your ID" });
 			var reviewResult = await reviewService.GetAverageratingOfMovie(id);
 			if (reviewResult == null) return movieResult;
-			var aggregatedResult = new GetMovieDTO(movieResult.ID, movieResult.MovieImage, movieResult.Description, movieResult.Description, movieResult.ReleaseDate, reviewResult.RatingAverage);
+			var aggregatedResult = new GetMovieDTO(movieResult.ID, movieResult.MovieImage, movieResult.Title, movieResult.Description, movieResult.ReleaseDate, reviewResult.RatingAverage);
 			return Ok(aggregatedResult);
 		}
 

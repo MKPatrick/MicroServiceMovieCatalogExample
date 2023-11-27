@@ -1,0 +1,87 @@
+version: "3.9"
+
+services:
+
+    movielibrary:
+        restart: unless-stopped
+        image:  mkpatrick/movielibrary
+        ports:
+            - "4200:4200"
+    moviegateway:
+        restart: unless-stopped
+        image:  mkpatrick/moviegateway
+        ports:
+            - "8082:8082"
+        environment:
+            ASPNETCORE_ENVIRONMENT: "Development"
+            ASPNETCORE_HTTP_PORTS: "8082"
+   
+    moviecatalogapplication:
+        restart: unless-stopped
+        image:  mkpatrick/moviecatalog
+        ports:
+            - "8080:80"
+        environment:
+            ConnectionStrings__DefaultConnection: "Data Source=/app/storage/Catalog.db"
+            ASPNETCORE_ENVIRONMENT: "Development"
+            ASPNETCORE_HTTP_PORTS: "80"
+            APIS__ReviewAPI: "http://moviereviewapplication:8080/api/v1/MovieRatings"
+            RabbitMQConfiguration__HostName: "rabbitmq"
+        volumes:
+            - mca_data:/app/storage
+            - mca_wwwroot:/app/wwwroot   
+    moviereviewapplication:
+        restart: unless-stopped
+        image:  mkpatrick/movierating
+        depends_on:
+            - reviewdb
+            - rabbitmq
+        ports:
+            - "8081:8080"
+        environment:
+            ConnectionStrings__DefaultConnection: "Host=reviewdb;Port=3306;Database=ratings;UID=rootuser;PWD=test123"
+            ASPNETCORE_ENVIRONMENT: "Development"
+            ASPNETCORE_HTTP_PORTS: "8080"   
+            RabbitMQConfiguration__HostName: "rabbitmq"
+        volumes:
+            - mca_data:/app/storage
+    moviestreamapplication:
+        restart: unless-stopped
+        image:  mkpatrick/moviestreaming
+        depends_on:
+            - rabbitmq
+        ports:
+            - "8083:8083"
+        environment:
+            ConnectionStrings__DefaultConnection: "Data Source=/app/storage/Stream.db"
+            ASPNETCORE_ENVIRONMENT: "Development"
+            ASPNETCORE_HTTP_PORTS: "8083"   
+            RabbitMQConfiguration__HostName: "rabbitmq"
+        volumes:
+            - msa_data:/app/storage
+            - msa_wwwroot:/app/wwwroot   
+    reviewdb:
+        restart: unless-stopped
+        image: mariadb:latest
+        ports:
+            - "3307:3306"
+        volumes:
+            - db_data:/var/lib/mysql
+        environment:
+            MYSQL_USER: rootuser
+            MYSQL_DATABASE: ratings
+            MYSQL_PASSWORD: test123
+            MYSQL_ROOT_PASSWORD: test123
+    rabbitmq:
+        restart: unless-stopped
+        image:  rabbitmq:management-alpine
+        ports:
+            - "15672:15672"
+            - "5672:5672"
+
+volumes:
+    db_data:
+    mca_data:
+    mca_wwwroot:
+    msa_data:
+    msa_wwwroot:
