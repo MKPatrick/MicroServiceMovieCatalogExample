@@ -24,4 +24,5 @@ jobs:
       run: dotnet restore src/Backend/MovieBackend/Services/MovieCatalog/MovieCatalog.Application
     - name: Build
       run: dotnet build src/Backend/MovieBackend/Services/MovieCatalog/MovieCatalog.Application --no-restore
-
+    - name: Test
+      run: dotnet test  src/Backend/MovieBackend/Services/MovieCatalog/MovieCatalog.Test --no-build --verbosity normal
