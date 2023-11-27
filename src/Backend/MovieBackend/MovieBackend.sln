@@ -33,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernel", "SharedKerne
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Movie.API.Gateway", "Movie.API.Gateway\Movie.API.Gateway.csproj", "{2A962983-231B-4A33-902E-975C9E83CE95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieCatalog.Test", "MovieCatalog.Test\MovieCatalog.Test.csproj", "{E4402362-CE49-4023-AAE2-E59790EF88B5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieCatalog.Test", "Services\MovieCatalog\MovieCatalog.Test\MovieCatalog.Test.csproj", "{E4402362-CE49-4023-AAE2-E59790EF88B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
