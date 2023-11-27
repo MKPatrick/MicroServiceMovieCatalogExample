@@ -28,7 +28,10 @@ jobs:
       - name: Build Gateway docker image
         working-directory: src/Backend/MovieBackend
         run: docker build -t mkpatrick/moviegateway -f Movie.API.Gateway/Dockerfile .
-
+      - name: Build Movielibrary Frontend docker image
+        working-directory: src/Frontend/MovieLibrary
+        run: docker build -t mkpatrick/movielibrary -f Dockerfile .
+        
       - name: Push Catalog docker image
         run: docker push mkpatrick/moviecatalog
       - name: Push Rating docker image
@@ -37,3 +40,5 @@ jobs:
         run: docker push mkpatrick/moviestreaming
       - name: Push Gateway docker image
         run: docker push mkpatrick/moviegateway
+      - name: Push Movielibrary Frontend docker image
+        run: docker push mkpatrick/movielibrary
