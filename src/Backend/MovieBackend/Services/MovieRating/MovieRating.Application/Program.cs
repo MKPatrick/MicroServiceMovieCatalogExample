@@ -2,12 +2,15 @@ using FluentValidation.AspNetCore;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 using MovieRating.Application.Configuration;
+using MovieRating.Application.Helper;
 using MovieRating.Application.Messaging;
 using MovieRating.Application.Services;
 using MovieRating.Domain.Contracts;
 using MovieRating.Infrastructure.Data;
 using MovieRating.Infrastructure.Repository;
 using MovieRating.Infrastructure.UOW;
+using Polly;
+using Polly.Retry;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +23,14 @@ builder.Services.AddFluentValidation(options =>
 	options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 });
 builder.Services.AddControllers();
+
+builder.Services.AddResiliencePipeline(Consts.RetryPipeLine, builder =>
+{
+	builder
+		.AddRetry(new RetryStrategyOptions())
+		.AddTimeout(TimeSpan.FromSeconds(60));
+});
+
 
 //RABITMQ
 

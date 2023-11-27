@@ -4,6 +4,9 @@ using RabbitMQ.Client;
 using System.Text;
 using Microsoft.Extensions.Options;
 using MovieRating.Application.Configuration;
+using Polly.Registry;
+using Polly;
+using MovieRating.Application.Helper;
 
 namespace MovieRating.Application.Messaging
 {
@@ -13,45 +16,51 @@ namespace MovieRating.Application.Messaging
 		private const string queuetopic = "rating.movie.deleted";
 		private readonly IServiceScopeFactory scopeFactory;
 		private readonly IOptions<RabbitMQConfiguration> rabbitMQConfiguration;
+		private readonly ResiliencePipeline resiliencePipeline;
 		private IConnection connection;
 		private IChannel channel;
-		public MovieDeletedConsumer(IServiceScopeFactory scopeFactory,IOptions<RabbitMQConfiguration> options)
+		public MovieDeletedConsumer(IServiceScopeFactory scopeFactory,IOptions<RabbitMQConfiguration> options, ResiliencePipelineProvider<string> resiliencePipelineProvider)
 		{
 			this.scopeFactory = scopeFactory;
 			this.rabbitMQConfiguration = options;
+			this.resiliencePipeline = resiliencePipelineProvider.GetPipeline(Consts.RetryPipeLine);
 		}
 
-		private void SetupRabbitMQ()
+		private async void SetupRabbitMQ()
 		{
-			var factory = new ConnectionFactory
+			await resiliencePipeline.ExecuteAsync(async token =>
 			{
-				HostName = rabbitMQConfiguration.Value.HostName,
-				UserName = rabbitMQConfiguration.Value.UserName,
-				Password = rabbitMQConfiguration.Value.Password,
-				Port= rabbitMQConfiguration.Value.Port,
-			};
-			//Create the RabbitMQ connection using connection factory details as i mentioned above
-			connection = factory.CreateConnection();
+				var factory = new ConnectionFactory
+				{
+					HostName = rabbitMQConfiguration.Value.HostName,
+					UserName = rabbitMQConfiguration.Value.UserName,
+					Password = rabbitMQConfiguration.Value.Password,
+					Port = rabbitMQConfiguration.Value.Port,
+				};
+				//Create the RabbitMQ connection using connection factory details as i mentioned above
+				connection = factory.CreateConnection();
 
-			channel = connection.CreateChannel();
+				channel = connection.CreateChannel();
 
-			// Declare the exchange and queue
-			channel.ExchangeDeclare(exchange: exchangetopic, type: ExchangeType.Fanout, durable: true);
-			channel.QueueDeclare(queue: queuetopic, durable: true, exclusive: false, autoDelete: false, arguments: null);
+				// Declare the exchange and queue
+				channel.ExchangeDeclare(exchange: exchangetopic, type: ExchangeType.Fanout, durable: true);
+				channel.QueueDeclare(queue: queuetopic, durable: true, exclusive: false, autoDelete: false, arguments: null);
 
-			// Bind the queue to the exchange
-			channel.QueueBind(queue: queuetopic, exchange: exchangetopic, routingKey: exchangetopic);
+				// Bind the queue to the exchange
+				channel.QueueBind(queue: queuetopic, exchange: exchangetopic, routingKey: exchangetopic);
 
-			var consumer = new EventingBasicConsumer(channel);
-			consumer.Received += async (model, ea) =>
-			{
-				var body = ea.Body.ToArray();
-				var message = Encoding.UTF8.GetString(body);
-				await HandleDelete(Convert.ToInt32(message));
-			};
-			channel.BasicConsume(queue: queuetopic,
-								 autoAck: true,
-								 consumer: consumer);
+				var consumer = new EventingBasicConsumer(channel);
+				consumer.Received += async (model, ea) =>
+				{
+					var body = ea.Body.ToArray();
+					var message = Encoding.UTF8.GetString(body);
+					await HandleDelete(Convert.ToInt32(message));
+				};
+				channel.BasicConsume(queue: queuetopic,
+									 autoAck: true,
+									 consumer: consumer);
+			});
+	
 		}
 
 		async Task HandleDelete(int MovieID)
