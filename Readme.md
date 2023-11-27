@@ -17,6 +17,7 @@ Project is splitted up in 4 Major Projects
 - Use API-Gateway(Ocelot)
 - Use docker-compose for setting up environment
 - MOQ & Fixture for Unit-Testing
+- Use Polly for Retry Strategy
 ### Communication
 All 3 Service-projects have RabbitMQ.Client implemented to give them the ability to send via AMQP.
 Catalog gets also data from the review service synchronos with HTTP-Restfull.
