@@ -1,10 +1,12 @@
 ﻿using AutoFixture;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using MovieCatalog.Application.Controllers;
 using MovieCatalog.Application.DTO.Movie;
 using MovieCatalog.Application.DTO.Rating;
 using MovieCatalog.Application.Services;
+using System.Text;
 
 namespace MovieCatalog.Test.Controllers
 {
@@ -75,5 +77,54 @@ namespace MovieCatalog.Test.Controllers
 			var castedResult = result.Result as NotFoundObjectResult;
 			Assert.IsNotNull(castedResult);
 		}
+
+		[TestMethod]
+		public async Task Should_Have_RESULTCREATED_Add_Movie()
+		{
+			var bytes = Encoding.UTF8.GetBytes("This is a dummy file");
+			fixture.Customize<IFormFile>(x => x.FromFactory(() => new FormFile(new MemoryStream(bytes), 0, bytes.Length, "Data", "dummy.txt")));
+			var expectedMovie = fixture.Create<GetMovieDTO>();
+			var addMovie = fixture.Create<AddMovieDTO>();
+			var movieService = new Mock<IMovieService>();
+			movieService.Setup(x => x.AddMovie(addMovie)).ReturnsAsync(expectedMovie);
+			var reviewService = new Mock<IReviewService>();
+			MovieController controller = new MovieController(movieService.Object, reviewService.Object);
+			var result = await controller.Post(addMovie);
+			var castedResult = result.Result as CreatedResult;
+			Assert.IsNotNull(castedResult);
+		}
+
+
+		[TestMethod]
+		public async Task Should_Have_RESULTOK_Update_Movie()
+		{
+			var bytes = Encoding.UTF8.GetBytes("This is a dummy file");
+			fixture.Customize<IFormFile>(x => x.FromFactory(() => new FormFile(new MemoryStream(bytes), 0, bytes.Length, "Data", "dummy.txt")));
+			var expectedMovie = fixture.Create<GetMovieDTO>();
+			var updateMovie = fixture.Create<UpdateMovieDTO>();
+			var movieService = new Mock<IMovieService>();
+			movieService.Setup(x => x.UpdateMovie(updateMovie));
+			var reviewService = new Mock<IReviewService>();
+			MovieController controller = new MovieController(movieService.Object, reviewService.Object);
+			var result = await controller.Put(updateMovie);
+			var castedResult = result as OkResult;
+			Assert.IsNotNull(castedResult);
+		}
+
+
+		[TestMethod]
+		public async Task Should_Have_RESULTOK_Delete_Movie()
+		{
+			var expectedMovie = fixture.Create<GetMovieDTO>();
+			var movieService = new Mock<IMovieService>();
+			movieService.Setup(x => x.DeleteMovie(1));
+			var reviewService = new Mock<IReviewService>();
+			MovieController controller = new MovieController(movieService.Object, reviewService.Object);
+			var result = await controller.Delete(1);
+			var castedResult = result as OkResult;
+			Assert.IsNotNull(castedResult);
+		}
+
+
 	}
 }
