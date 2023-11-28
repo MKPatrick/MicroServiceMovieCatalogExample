@@ -7,25 +7,32 @@
 
     <div class="form-group">
       <label for="title">Movie Title</label>
-      <input required id="title" type="text"  [(ngModel)]="addMovieModel.title" name="title" class="form-control" placeholder="Movie Title" />
+      <input     id="title" type="text"  [(ngModel)]="addMovieModel.title" required name="title" class="form-control" placeholder="Movie Title" />
     </div>
   
     <div class="form-group">
       <label for="description">Movie Description</label>
-      <input required id="description" type="text"  [(ngModel)]="addMovieModel.description" name="description" class="form-control" placeholder="Movie Description" />
+      <input required id="description" type="text"  [(ngModel)]="addMovieModel.description" required name="description" class="form-control" placeholder="Movie Description" />
     </div>
 
     <div class="form-group">
-      <label for="description">Movie Thumbnail</label> <br/>
-      <input type="file" class="file-upload" onchange="console.log(event.target.files)">
+      <label for="releasedate">Movie Release Date</label>
+      <input required id="releasedate" type="date" [ngModel] ="selectedReleaseDate" (ngModelChange)="selectedReleaseDate = $event"  name="releasedate" class="form-control" placeholder="Movie Release Date" />
+    </div>
+
+    <div class="form-group">
+      <label for="upload">Movie Thumbnail</label> <br/>
+      <input id="upload" type="file" class="file-upload" (change)="onFileSelected($event)">
     </div>
   
    
 
 </div>
 <div class="modal-footer">
+
+  <ngb-alert  *ngIf="errorMsg!=null" type="danger">{{ errorMsg }}</ngb-alert>
   <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
-  <button type="button" class="btn btn-dark" (click)="activeModal.close('Close click')">Create Movie</button>
+  <input type="submit" class="btn btn-dark"  value="Create Movie" />
 
 </div>
 

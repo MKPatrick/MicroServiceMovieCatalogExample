@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Movie } from '../models/movie';
 import { environment } from 'src/environments/environment';
+import { Form } from '@angular/forms';
 
 @Injectable({providedIn: 'root'})
 
@@ -34,9 +35,9 @@ deleteMovie(id:number)
 this.httpClient.delete(`${this.baseURL}/${id}`);
 }
 
-addMovie(movie:Movie):Observable<any>
+addMovie(movieForm:FormData):Observable<any>
 {
-    return this.httpClient.post(`${this.baseURL}`,movie);
+    return this.httpClient.post(`${this.baseURL}`,movieForm);
 }
 
 }
