@@ -69,13 +69,9 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-	//Create Migration
 	var databaseContext = scope.ServiceProvider.GetService<MovieRatingDatabaseContext>();
-	//SetupDatabase
 	await new DatabaseCheckupService(databaseContext).SetupDatabase();
-
 	var movieDeleteConsumer = scope.ServiceProvider.GetService<MovieDeletedConsumer>();
-
 }
 
 // Configure the HTTP request pipeline.

@@ -9,6 +9,8 @@ using MovieStreaming.Domain.Contracts;
 using MovieStreaming.Infrastructure.Data;
 using MovieStreaming.Infrastructure.Repositories;
 using MovieStreaming.Infrastructure.UOW;
+using Polly;
+using Polly.Retry;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +24,13 @@ builder.Services.AddHostedService<MovieDeletedConsumer>();
 builder.Services.AddFluentValidation(options =>
 {
 	options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+});
+
+builder.Services.AddResiliencePipeline(Consts.Retrypipeline, builder =>
+{
+	builder
+		.AddRetry(new RetryStrategyOptions())
+		.AddTimeout(TimeSpan.FromSeconds(60));
 });
 
 builder.Services.AddControllers();

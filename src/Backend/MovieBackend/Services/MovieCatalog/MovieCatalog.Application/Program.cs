@@ -50,7 +50,6 @@ var retryPolicy = HttpPolicyExtensions
 
 var timeoutPolicy = Policy.TimeoutAsync<HttpResponseMessage>(10);
 
-
 builder.Services.AddHttpClient<IReviewService, ReviewService>(client =>
 {
 	client.BaseAddress = new Uri(builder.Configuration.GetSection("APIS")["ReviewAPI"]);
