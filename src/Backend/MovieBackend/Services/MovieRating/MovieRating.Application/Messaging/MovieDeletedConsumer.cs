@@ -1,12 +1,12 @@
-﻿using MovieRating.Application.Services;
-using RabbitMQ.Client.Events;
-using RabbitMQ.Client;
-using System.Text;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using MovieRating.Application.Configuration;
-using Polly.Registry;
-using Polly;
 using MovieRating.Application.Helper;
+using MovieRating.Application.Services;
+using Polly;
+using Polly.Registry;
+using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
+using System.Text;
 
 namespace MovieRating.Application.Messaging
 {
@@ -19,6 +19,7 @@ namespace MovieRating.Application.Messaging
 		private readonly ResiliencePipeline resiliencePipeline;
 		private IConnection connection;
 		private IChannel channel;
+
 		public MovieDeletedConsumer(IServiceScopeFactory scopeFactory, IOptions<RabbitMQConfiguration> options, ResiliencePipelineProvider<string> resiliencePipelineProvider)
 		{
 			this.scopeFactory = scopeFactory;
@@ -60,10 +61,9 @@ namespace MovieRating.Application.Messaging
 									autoAck: true,
 									consumer: consumer);
 		   });
-
 		}
 
-		async Task HandleDelete(int MovieID)
+		private async Task HandleDelete(int MovieID)
 		{
 			using (var scope = scopeFactory.CreateScope())
 			{
@@ -71,10 +71,7 @@ namespace MovieRating.Application.Messaging
 				await scopedService.DeleteRatingsFromMovie(MovieID);
 				Console.WriteLine($"DELETED MOVIE {MovieID}");
 			}
-
 		}
-
-
 
 		public Task StartAsync(CancellationToken cancellationToken)
 		{

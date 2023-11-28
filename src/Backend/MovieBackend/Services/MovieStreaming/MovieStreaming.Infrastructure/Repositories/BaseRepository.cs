@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MovieStreaming.Infrastructure.Data;
 using SharedKernel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MovieStreaming.Infrastructure.Repositories
 {
@@ -40,7 +35,6 @@ namespace MovieStreaming.Infrastructure.Repositories
 		{
 			dbSet.Attach(entity);
 			context.Entry(entity).State = EntityState.Modified;
-
 		}
 
 		public virtual async Task DeleteAsync(int id)
@@ -48,7 +42,6 @@ namespace MovieStreaming.Infrastructure.Repositories
 			var entity = await GetByIdAsync(id);
 			if (entity != null)
 				dbSet.Remove(entity);
-
 		}
 	}
 }

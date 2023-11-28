@@ -23,5 +23,4 @@ namespace MovieRating.Infrastructure.Data
 			}
 		}
 	}
-
 }

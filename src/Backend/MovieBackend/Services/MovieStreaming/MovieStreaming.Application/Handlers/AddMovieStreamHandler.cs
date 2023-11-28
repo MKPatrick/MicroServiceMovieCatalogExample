@@ -5,7 +5,6 @@ using MovieStreaming.Application.DTOS;
 using MovieStreaming.Application.Helper;
 using MovieStreaming.Domain.Contracts;
 using MovieStreaming.Domain.Entities;
-using System;
 
 namespace MovieStreaming.Application.Handlers
 {
@@ -15,14 +14,13 @@ namespace MovieStreaming.Application.Handlers
 		private readonly IUnitOfWork unitOfWork;
 		private readonly IFileCreationHelper fileCreationHelper;
 
-
 		public AddMovieStreamHandler(IMovieStreamRepository movieStreamRepository, IUnitOfWork unitOfWork, IFileCreationHelper fileCreationHelper)
 		{
 			this.movieStreamRepository = movieStreamRepository;
 			this.unitOfWork = unitOfWork;
 			this.fileCreationHelper = fileCreationHelper;
-
 		}
+
 		public async Task<GetMovieStreamDTO> Handle(AddMovieStreamCommand request, CancellationToken cancellationToken)
 		{
 			string movieFileName = "Streams/" + Guid.NewGuid().ToString() + ".mp4";
@@ -33,9 +31,5 @@ namespace MovieStreaming.Application.Handlers
 			await unitOfWork.SaveChangesAsync();
 			return result.Adapt<GetMovieStreamDTO>();
 		}
-
-
-
-
 	}
 }

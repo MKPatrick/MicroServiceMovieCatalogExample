@@ -37,7 +37,6 @@ namespace MovieCatalog.Application.Controllers
 			return Ok(res);
 		}
 
-
 		[HttpGet("{id}")]
 		public async Task<ActionResult<GetMovieDTO>> Get(int id)
 		{
@@ -49,7 +48,6 @@ namespace MovieCatalog.Application.Controllers
 			var aggregatedResult = new GetMovieDTO(movieResult.ID, movieResult.MovieImage, movieResult.Title, movieResult.Description, movieResult.ReleaseDate, reviewResult.RatingAverage);
 			return Ok(aggregatedResult);
 		}
-
 
 		[HttpPost]
 		public async Task<ActionResult<GetMovieDTO>> Post([FromForm] AddMovieDTO value)
@@ -64,7 +62,6 @@ namespace MovieCatalog.Application.Controllers
 			await movieService.UpdateMovie(value);
 			return Ok();
 		}
-
 
 		[HttpDelete("{id}")]
 		public async Task<ActionResult> Delete(int id)

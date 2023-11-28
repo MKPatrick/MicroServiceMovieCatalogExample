@@ -1,7 +1,6 @@
 ﻿using MovieRating.Domain.Contracts;
 using MovieRating.Domain.Entities;
 using MovieRating.Infrastructure.Data;
-using SharedKernel;
 
 namespace MovieRating.Infrastructure.Repository
 {

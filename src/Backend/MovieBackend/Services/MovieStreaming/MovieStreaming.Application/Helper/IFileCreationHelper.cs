@@ -1,5 +1,4 @@
-﻿
-namespace MovieStreaming.Application.Helper
+﻿namespace MovieStreaming.Application.Helper
 {
 	public interface IFileCreationHelper
 	{

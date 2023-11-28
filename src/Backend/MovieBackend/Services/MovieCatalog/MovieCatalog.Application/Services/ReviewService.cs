@@ -6,6 +6,7 @@ namespace MovieCatalog.Application.Services
 	public class ReviewService : IReviewService
 	{
 		private readonly HttpClient movieRatingHttpClient;
+
 		public ReviewService(HttpClient movieratingHttpClient)
 		{
 			this.movieRatingHttpClient = movieratingHttpClient;
@@ -30,9 +31,6 @@ namespace MovieCatalog.Application.Services
 				// no ratings available
 				return null;
 			}
-
 		}
-
-
 	}
 }

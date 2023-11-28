@@ -18,13 +18,12 @@ namespace MovieStreaming.Application.Controllers
 		{
 			this.mediator = mediator;
 		}
-	
+
 		[HttpGet]
 		public async Task<IEnumerable<GetMovieStreamDTO>> Get()
 		{
 			return await mediator.Send(new GetMovieStreamsQuerry());
 		}
-
 
 		[HttpGet("{id}")]
 		public async Task<ActionResult<GetMovieStreamDTO>> Get(int id)
@@ -53,7 +52,6 @@ namespace MovieStreaming.Application.Controllers
 		{
 			var result = await mediator.Send(new AddMovieStreamCommand(value.MovieID, value.FormMovieFile));
 			return Ok(result);
-
 		}
 
 		[HttpPut()]

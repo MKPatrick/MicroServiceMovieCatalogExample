@@ -1,9 +1,7 @@
 using FluentValidation.AspNetCore;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using MovieCatalog.Application.Configuration;
-using MovieCatalog.Application.Factories;
 using MovieCatalog.Application.Messaging;
 using MovieCatalog.Application.Services;
 using MovieCatalog.Domain.Contracts;
@@ -26,8 +24,6 @@ builder.Services.AddFluentValidation(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-
 
 //Register Database
 builder.Services.AddDbContext<MovieDatabaseContext>(options =>
@@ -55,15 +51,11 @@ builder.Services.AddHttpClient<IReviewService, ReviewService>(client =>
 	client.BaseAddress = new Uri(builder.Configuration.GetSection("APIS")["ReviewAPI"]);
 }).AddPolicyHandler(retryPolicy).AddPolicyHandler(timeoutPolicy);
 
-
-
 //Register Repository
 builder.Services.AddTransient<IMovieRepository, MovieRepository>();
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 
-
 var app = builder.Build();
-
 
 using (var scope = app.Services.CreateScope())
 {
@@ -73,15 +65,12 @@ using (var scope = app.Services.CreateScope())
 	await new DatabaseCheckupService(databaseContext).SetupDatabase();
 }
 
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
 	app.UseSwagger();
 	app.UseSwaggerUI();
 }
-
-
 
 app.UseStaticFiles();
 

@@ -1,13 +1,13 @@
-﻿using Microsoft.Extensions.Options;
-using RabbitMQ.Client.Events;
-using RabbitMQ.Client;
-using MovieStreaming.Application.Configuration;
-using MediatR;
-using System.Text;
+﻿using MediatR;
+using Microsoft.Extensions.Options;
 using MovieStreaming.Application.Commands;
-using Polly.Registry;
+using MovieStreaming.Application.Configuration;
 using MovieStreaming.Application.Helper;
 using Polly;
+using Polly.Registry;
+using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
+using System.Text;
 
 namespace MovieStreaming.Application.Messaging
 {
@@ -18,6 +18,7 @@ namespace MovieStreaming.Application.Messaging
 		private IConnection connection;
 		private IChannel channel;
 		private ResiliencePipeline resiliencePipeline;
+
 		public MovieDeletedConsumer(IServiceScopeFactory scopeFactory, IOptions<RabbitMQConfiguration> options, ResiliencePipelineProvider<string> resiliencePipelineProvider)
 		{
 			this.scopeFactory = scopeFactory;
@@ -29,7 +30,6 @@ namespace MovieStreaming.Application.Messaging
 		{
 			resiliencePipeline.Execute(token =>
 		   {
-
 			   var factory = new ConnectionFactory
 			   {
 				   HostName = rabbitMQConfiguration.Value.HostName,
@@ -62,14 +62,13 @@ namespace MovieStreaming.Application.Messaging
 		   });
 		}
 
-		async Task HandleDelete(int MovieID)
+		private async Task HandleDelete(int MovieID)
 		{
 			using (var scope = scopeFactory.CreateScope())
 			{
 				var scopedService = scope.ServiceProvider.GetRequiredService<IMediator>();
 				await scopedService.Send(new DeleteMovieStreamByMovieIDCommand(MovieID));
 			}
-
 		}
 
 		public Task StartAsync(CancellationToken cancellationToken)

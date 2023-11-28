@@ -1,12 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MovieRating.Domain.Contracts;
+﻿using MovieRating.Domain.Contracts;
 using MovieRating.Domain.Entities;
 using MovieRating.Infrastructure.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MovieRating.Infrastructure.Repository
 {
@@ -18,6 +12,7 @@ namespace MovieRating.Infrastructure.Repository
 		{
 			this.movieRatingDatabaseContext = movieRatingDatabaseContext;
 		}
+
 		public IQueryable<MovieRate> GetRatesFromMovie(int MovieID)
 		{
 			return movieRatingDatabaseContext.MovieRates.Where(x => x.MovieID == MovieID);

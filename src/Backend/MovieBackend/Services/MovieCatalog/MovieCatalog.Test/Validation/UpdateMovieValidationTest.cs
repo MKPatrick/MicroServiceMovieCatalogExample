@@ -12,6 +12,7 @@ namespace MovieCatalog.Test.Validation
 	{
 		private UpdateMovieValidation updateMovieValidation;
 		private Random rndm;
+
 		public UpdateMovieValidationTest()
 		{
 			updateMovieValidation = new UpdateMovieValidation();
@@ -54,7 +55,6 @@ namespace MovieCatalog.Test.Validation
 			result.ShouldNotHaveValidationErrorFor(updateMovie => updateMovie.MovieImage);
 		}
 
-
 		[TestMethod]
 		public void Should_Have_Error_When_Description_Is_ToBig()
 		{
@@ -66,7 +66,7 @@ namespace MovieCatalog.Test.Validation
 		[TestMethod]
 		public void Should_Have_Error_When_Description_Is_Empty()
 		{
-			var model = new UpdateMovieDTO(1, null, "TestTitle",string.Empty, new DateRelease() { Day = 12, Month = 12, Year = 12 });
+			var model = new UpdateMovieDTO(1, null, "TestTitle", string.Empty, new DateRelease() { Day = 12, Month = 12, Year = 12 });
 			var result = updateMovieValidation.TestValidate(model);
 			result.ShouldHaveValidationErrorFor(updateMovie => updateMovie.Description);
 		}
@@ -74,12 +74,11 @@ namespace MovieCatalog.Test.Validation
 		[TestMethod]
 		public void Should_Have_NO_Error()
 		{
-			var model = new UpdateMovieDTO(1, null, "TestTitle","TestDescription", new DateRelease() { Day = 12, Month = 12, Year = 12 });
+			var model = new UpdateMovieDTO(1, null, "TestTitle", "TestDescription", new DateRelease() { Day = 12, Month = 12, Year = 12 });
 			var result = updateMovieValidation.TestValidate(model);
 			result.ShouldNotHaveValidationErrorFor(updateMovie => updateMovie.Description);
 			result.ShouldNotHaveValidationErrorFor(updateMovie => updateMovie.Title);
 		}
-
 
 		private string CreateString(int stringLength)
 		{
@@ -93,6 +92,5 @@ namespace MovieCatalog.Test.Validation
 
 			return new string(chars);
 		}
-
 	}
 }

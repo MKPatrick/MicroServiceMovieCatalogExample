@@ -6,7 +6,6 @@ namespace MovieRating.Infrastructure.Repository
 {
 	public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
 	{
-
 		private MovieRatingDatabaseContext context;
 		public DbSet<TEntity> dbSet { get; private set; }
 
@@ -36,7 +35,6 @@ namespace MovieRating.Infrastructure.Repository
 		{
 			dbSet.Attach(entity);
 			context.Entry(entity).State = EntityState.Modified;
-
 		}
 
 		public virtual async Task DeleteAsync(int id)
@@ -44,8 +42,6 @@ namespace MovieRating.Infrastructure.Repository
 			var entity = await GetByIdAsync(id);
 			if (entity != null)
 				dbSet.Remove(entity);
-
 		}
-
 	}
 }

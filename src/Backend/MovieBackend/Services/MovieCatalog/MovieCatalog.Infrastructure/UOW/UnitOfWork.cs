@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MovieCatalog.Domain.Contracts;
+﻿using MovieCatalog.Domain.Contracts;
 using MovieCatalog.Infrastructure.Data;
 
 namespace MovieCatalog.Infrastructure.UOW
@@ -12,6 +11,7 @@ namespace MovieCatalog.Infrastructure.UOW
 		{
 			this.dbContext = dbContext;
 		}
+
 		public async Task<int> SaveChangesAsync()
 		{
 			return await dbContext.SaveChangesAsync();

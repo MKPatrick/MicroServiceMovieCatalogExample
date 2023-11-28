@@ -8,12 +8,13 @@ namespace MovieRating.Infrastructure.UOW
 		private readonly MovieRatingDatabaseContext movieRatingDatabase;
 
 		public UnitOfWork(MovieRatingDatabaseContext movieRatingDatabase)
-        {
+		{
 			this.movieRatingDatabase = movieRatingDatabase;
 		}
-        public async Task<int> SaveChangesAsync()
+
+		public async Task<int> SaveChangesAsync()
 		{
-		return await movieRatingDatabase.SaveChangesAsync();
+			return await movieRatingDatabase.SaveChangesAsync();
 		}
 	}
 }

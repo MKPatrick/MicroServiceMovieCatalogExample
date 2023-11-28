@@ -7,7 +7,7 @@ namespace MovieCatalog.Infrastructure.Data
 		private readonly MovieDatabaseContext movieDatabaseContext;
 
 		public DatabaseCheckupService(MovieDatabaseContext movieDatabaseContext)
-        {
+		{
 			this.movieDatabaseContext = movieDatabaseContext;
 		}
 
@@ -17,10 +17,10 @@ namespace MovieCatalog.Infrastructure.Data
 			.GetPendingMigrationsAsync())
 			.ToArray();
 
-			if(migrations.Any())
+			if (migrations.Any())
 			{
 				await movieDatabaseContext.Database.MigrateAsync();
 			}
 		}
-    }
+	}
 }

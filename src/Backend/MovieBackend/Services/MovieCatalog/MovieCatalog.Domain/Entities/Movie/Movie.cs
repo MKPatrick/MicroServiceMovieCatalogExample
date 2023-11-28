@@ -7,6 +7,5 @@
 		public string MovieImage { get; set; }
 		public string? Description { get; set; }
 		public DateRelease? ReleaseDate { get; set; }
-
 	}
 }

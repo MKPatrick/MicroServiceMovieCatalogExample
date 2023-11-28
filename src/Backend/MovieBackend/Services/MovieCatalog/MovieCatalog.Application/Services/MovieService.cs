@@ -29,14 +29,12 @@ namespace MovieCatalog.Application.Services
 			return result.Adapt<GetMovieDTO>();
 		}
 
-
 		public async Task<IEnumerable<GetMovieDTO>> GetAllMovies()
 		{
 			var result = await movieRepository.GetAllAsync();
 			result = result.Select(x => x = SetPlaceHolderImageWhenNoImageIsSet(x));
 			return result.Adapt<IEnumerable<GetMovieDTO>>();
 		}
-
 
 		public async Task<GetMovieDTO> AddMovie(AddMovieDTO addMovieDTO)
 		{
@@ -67,7 +65,6 @@ namespace MovieCatalog.Application.Services
 			}
 			catch (Exception ex)
 			{
-
 				throw;
 			}
 		}
@@ -102,7 +99,6 @@ namespace MovieCatalog.Application.Services
 			return movie;
 		}
 
-
 		private async Task<string> SaveImage(IFormFile formFile, string FileName)
 		{
 			var uniqueFileName = FileName;
@@ -113,7 +109,6 @@ namespace MovieCatalog.Application.Services
 			}
 			return $"/MovieImages/{uniqueFileName}";
 		}
-
 
 		private string UploadFolder
 		{

@@ -14,6 +14,7 @@ namespace MovieStreaming.Application.Handlers
 		{
 			this.movieStreamRepository = movieStreamRepository;
 		}
+
 		public async Task<GetMovieStreamDTO> Handle(GetMovieStreamByIdQuerry request, CancellationToken cancellationToken)
 		{
 			var result = await movieStreamRepository.GetByIdAsync(request.ID);

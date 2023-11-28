@@ -1,6 +1,5 @@
 using FluentValidation.AspNetCore;
 using Mapster;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using MovieStreaming.Application.Configuration;
 using MovieStreaming.Application.Helper;

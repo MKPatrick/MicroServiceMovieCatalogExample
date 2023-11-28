@@ -46,6 +46,5 @@ namespace MovieRating.Application.Services
 			var result = await (movieRatingRepository.GetRatesFromMovie(MovieID).AverageAsync(x => (int)x.MovieRatedStar));
 			return new GetMovieAverageRatingDTO(MovieID, result);
 		}
-
 	}
 }

@@ -1,12 +1,11 @@
-﻿using SharedKernel;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using MovieCatalog.Infrastructure.Data;
+using SharedKernel;
 
 namespace MovieCatalog.Infrastructure.Repositories
 {
 	public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
 	{
-
 		private MovieDatabaseContext context;
 		public DbSet<TEntity> dbSet { get; private set; }
 
@@ -36,7 +35,6 @@ namespace MovieCatalog.Infrastructure.Repositories
 		{
 			dbSet.Attach(entity);
 			context.Entry(entity).State = EntityState.Modified;
-
 		}
 
 		public virtual async Task DeleteAsync(int id)
@@ -44,8 +42,6 @@ namespace MovieCatalog.Infrastructure.Repositories
 			var entity = await GetByIdAsync(id);
 			if (entity != null)
 				dbSet.Remove(entity);
-
 		}
-
 	}
 }

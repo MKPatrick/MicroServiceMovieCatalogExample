@@ -7,13 +7,11 @@ namespace MovieRating.Infrastructure.Data
 	{
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-	//		modelBuilder.Entity<MovieRate>()
-	//.Property(p => p.MovieRatedStar)
-	//.HasConversion<int>();
+			//		modelBuilder.Entity<MovieRate>()
+			//.Property(p => p.MovieRatedStar)
+			//.HasConversion<int>();
 			modelBuilder.Entity<MovieRate>()
 	.HasKey(p => p.ID);
-
-
 		}
 	}
 }

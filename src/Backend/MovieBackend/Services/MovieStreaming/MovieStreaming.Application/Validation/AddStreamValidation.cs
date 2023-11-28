@@ -7,7 +7,7 @@ namespace MovieStreaming.Application.Validation
 	{
 		public AddStreamValidation()
 		{
-			RuleFor(stream => stream.FormMovieFile).NotNull().WithMessage("You have to upload a .mp4 file!").Must(stream => stream.FileName.EndsWith(".mp4")).WithMessage("Your Stream has to be a valid mp4 file!").When(stream=> stream.FormMovieFile!=null);
+			RuleFor(stream => stream.FormMovieFile).NotNull().WithMessage("You have to upload a .mp4 file!").Must(stream => stream.FileName.EndsWith(".mp4")).WithMessage("Your Stream has to be a valid mp4 file!").When(stream => stream.FormMovieFile != null);
 		}
 	}
 }

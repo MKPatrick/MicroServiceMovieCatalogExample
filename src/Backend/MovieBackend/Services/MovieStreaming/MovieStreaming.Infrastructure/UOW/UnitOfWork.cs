@@ -11,6 +11,7 @@ namespace MovieStreaming.Infrastructure.UOW
 		{
 			this.movieRatingDatabase = movieRatingDatabase;
 		}
+
 		public async Task<int> SaveChangesAsync()
 		{
 			return await movieRatingDatabase.SaveChangesAsync();

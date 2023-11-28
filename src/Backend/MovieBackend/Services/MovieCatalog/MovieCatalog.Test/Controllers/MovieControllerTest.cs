@@ -20,7 +20,6 @@ namespace MovieCatalog.Test.Controllers
 			fixture = new Fixture();
 		}
 
-
 		[TestMethod]
 		public async Task Should_Have_RESULTOK_Get_All_Movies()
 		{
@@ -61,7 +60,6 @@ namespace MovieCatalog.Test.Controllers
 			var movie = castedResult.Value as GetMovieDTO;
 			Assert.IsNotNull(movie);
 			Assert.AreEqual(expectedMovie, movie);
-
 		}
 
 		[TestMethod]
@@ -94,7 +92,6 @@ namespace MovieCatalog.Test.Controllers
 			Assert.IsNotNull(castedResult);
 		}
 
-
 		[TestMethod]
 		public async Task Should_Have_RESULTOK_Update_Movie()
 		{
@@ -111,7 +108,6 @@ namespace MovieCatalog.Test.Controllers
 			Assert.IsNotNull(castedResult);
 		}
 
-
 		[TestMethod]
 		public async Task Should_Have_RESULTOK_Delete_Movie()
 		{
@@ -124,7 +120,5 @@ namespace MovieCatalog.Test.Controllers
 			var castedResult = result as OkResult;
 			Assert.IsNotNull(castedResult);
 		}
-
-
 	}
 }

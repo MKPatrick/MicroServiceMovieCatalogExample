@@ -14,6 +14,7 @@ namespace MovieStreaming.Application.Handlers
 			this.movieStreamRepository = movieStreamRepository;
 			this.unitOfWork = unitOfWork;
 		}
+
 		public async Task Handle(DeleteMovieStreamByMovieIDCommand request, CancellationToken cancellationToken)
 		{
 			await movieStreamRepository.DeleteStreamsByMovieID(request.MovieID);

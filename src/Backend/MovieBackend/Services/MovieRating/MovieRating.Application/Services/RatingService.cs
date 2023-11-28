@@ -1,5 +1,4 @@
 ﻿using Mapster;
-using MovieRating.Application.DTO.MovieRating;
 using MovieRating.Application.DTO.Rating;
 using MovieRating.Domain.Contracts;
 using MovieRating.Domain.Entities;
@@ -16,7 +15,6 @@ namespace MovieRating.Application.Services
 			this.ratingRepository = movieRatingRepository;
 			this.unitOfWork = unitOfWork;
 		}
-
 
 		public async Task<GetRatingDTO> GetRating(int ID)
 		{
@@ -48,7 +46,5 @@ namespace MovieRating.Application.Services
 			await ratingRepository.DeleteAsync(id);
 			await unitOfWork.SaveChangesAsync();
 		}
-
-
 	}
 }

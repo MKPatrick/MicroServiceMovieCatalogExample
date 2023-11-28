@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MovieStreaming.Application.Helper
+﻿namespace MovieStreaming.Application.Helper
 {
 	public class FileCreationHelper : IFileCreationHelper
 	{

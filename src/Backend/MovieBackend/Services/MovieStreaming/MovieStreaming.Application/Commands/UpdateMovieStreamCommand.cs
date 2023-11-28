@@ -12,7 +12,6 @@ namespace MovieStreaming.Application.Commands
 			this.ID = ID;
 
 			this.FormMovieFile = FormMovieFile;
-
 		}
 	}
 }

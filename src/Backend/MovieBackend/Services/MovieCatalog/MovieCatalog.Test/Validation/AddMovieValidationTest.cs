@@ -3,37 +3,29 @@ using Microsoft.AspNetCore.Http;
 using MovieCatalog.Application.DTO.Movie;
 using MovieCatalog.Application.Validation;
 using MovieCatalog.Domain.Entities.Movie;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Runtime.Intrinsics.Arm;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace MovieCatalog.Test.Validation
 {
 	[TestClass]
 	public class AddMovieValidationTest
 	{
-
-        private AddMovieValidation addMovieValidation;
+		private AddMovieValidation addMovieValidation;
 		private Random rndm;
-        public AddMovieValidationTest()
-        {
-			addMovieValidation= new AddMovieValidation();
+
+		public AddMovieValidationTest()
+		{
+			addMovieValidation = new AddMovieValidation();
 			rndm = new Random();
 		}
 
-
-        [TestMethod]
-        public void Should_Have_Error_When_Description_is_Empty()
-        {
-			var model = new AddMovieDTO("TestTitle", string.Empty, new DateRelease() { Month=1, Day=1,Year=1}, null);
+		[TestMethod]
+		public void Should_Have_Error_When_Description_is_Empty()
+		{
+			var model = new AddMovieDTO("TestTitle", string.Empty, new DateRelease() { Month = 1, Day = 1, Year = 1 }, null);
 			var result = addMovieValidation.TestValidate(model);
 			result.ShouldHaveValidationErrorFor(addMovie => addMovie.Description);
 		}
-
 
 		[TestMethod]
 		public void Should_Have_Error_When_Description_is_ToBig()
@@ -51,7 +43,6 @@ namespace MovieCatalog.Test.Validation
 			result.ShouldHaveValidationErrorFor(addMovie => addMovie.Title);
 		}
 
-
 		[TestMethod]
 		public void Should_Have_Error_When_Title_is_ToBig()
 		{
@@ -59,7 +50,6 @@ namespace MovieCatalog.Test.Validation
 			var result = addMovieValidation.TestValidate(model);
 			result.ShouldHaveValidationErrorFor(addMovie => addMovie.Title);
 		}
-
 
 		[TestMethod]
 		public void Should_Have_NO_Error()
@@ -69,9 +59,7 @@ namespace MovieCatalog.Test.Validation
 			result.ShouldNotHaveValidationErrorFor(addMovie => addMovie.ReleaseDate);
 			result.ShouldNotHaveValidationErrorFor(addMovie => addMovie.Title);
 			result.ShouldNotHaveValidationErrorFor(addMovie => addMovie.Description);
-
 		}
-
 
 		[TestMethod]
 		public void Should_Have_Error_When_FileFormat_is_Incorrect()
@@ -93,8 +81,6 @@ namespace MovieCatalog.Test.Validation
 			result.ShouldNotHaveValidationErrorFor(addMovie => addMovie.MovieImage);
 		}
 
-
-
 		private string CreateString(int stringLength)
 		{
 			const string allowedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz0123456789!@$?_-";
@@ -107,6 +93,5 @@ namespace MovieCatalog.Test.Validation
 
 			return new string(chars);
 		}
-
 	}
 }

@@ -1,11 +1,9 @@
 ﻿using MovieCatalog.Application.Services;
-using System.Net.Http;
 
 namespace MovieCatalog.Application.Factories
 {
 	public class ReviewServiceFactory
 	{
-
 		/// <summary>
 		/// Creates an Review service
 		/// </summary>

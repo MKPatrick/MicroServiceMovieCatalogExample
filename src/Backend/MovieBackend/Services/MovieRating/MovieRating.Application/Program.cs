@@ -31,7 +31,6 @@ builder.Services.AddResiliencePipeline(Consts.RetryPipeLine, builder =>
 		.AddTimeout(TimeSpan.FromSeconds(60));
 });
 
-
 //RABITMQ
 
 builder.Services.AddHostedService<MovieDeletedConsumer>();
@@ -66,7 +65,6 @@ builder.Services.AddDbContext<MovieRatingDatabaseContext>(options =>
 
 var app = builder.Build();
 
-
 using (var scope = app.Services.CreateScope())
 {
 	var databaseContext = scope.ServiceProvider.GetService<MovieRatingDatabaseContext>();
@@ -80,8 +78,6 @@ if (app.Environment.IsDevelopment())
 	app.UseSwagger();
 	app.UseSwaggerUI();
 }
-
-
 
 app.UseAuthorization();
 
