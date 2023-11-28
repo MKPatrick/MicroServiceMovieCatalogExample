@@ -1,17 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MovieRating.Domain.Entities;
 
 namespace MovieRating.Infrastructure.Data
 {
-	public partial class MovieRatingDatabaseContext : DbContext
+	public class MovieRatingDatabaseConfiguration : IEntityTypeConfiguration<MovieRate>
 	{
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		public void Configure(EntityTypeBuilder<MovieRate> builder)
 		{
-			//		modelBuilder.Entity<MovieRate>()
-			//.Property(p => p.MovieRatedStar)
-			//.HasConversion<int>();
-			modelBuilder.Entity<MovieRate>()
-	.HasKey(p => p.ID);
+			builder.HasKey(p => p.ID);
 		}
 	}
 }

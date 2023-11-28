@@ -1,16 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MovieCatalog.Domain.Entities.Movie;
 
 namespace MovieCatalog.Infrastructure.Data
 {
-	public partial class MovieDatabaseContext : DbContext
+	public class MovieEntityConfiguration : IEntityTypeConfiguration<Movie>
 	{
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		public void Configure(EntityTypeBuilder<Movie> builder)
 		{
-			modelBuilder.Entity<Movie>().Property(x => x.Title).IsRequired();
-			modelBuilder.Entity<Movie>().HasKey(x => x.ID);
-			modelBuilder.Entity<Movie>().Property(x => x.MovieImage).IsRequired(false);
-			modelBuilder.Entity<Movie>().OwnsOne(x => x.ReleaseDate);
+			builder.Property(x => x.Title).IsRequired();
+			builder.HasKey(x => x.ID);
+			builder.Property(x => x.MovieImage).IsRequired(false);
+			builder.OwnsOne(x => x.ReleaseDate);
 		}
 	}
 }

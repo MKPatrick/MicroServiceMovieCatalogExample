@@ -36,4 +36,3 @@ app.MapControllers();
 app.UseCors("MyCorsPolicy");
 await app.UseOcelot();
 app.Run();
-

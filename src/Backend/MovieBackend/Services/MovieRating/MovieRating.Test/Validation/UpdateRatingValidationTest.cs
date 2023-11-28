@@ -9,6 +9,7 @@ namespace MovieRating.Test.Validation
 	{
 		private UpdateRatingValidation updateRatingValidation;
 		private Random rndm;
+
 		public UpdateRatingValidationTest()
 		{
 			updateRatingValidation = new();
@@ -38,7 +39,6 @@ namespace MovieRating.Test.Validation
 			var result = updateRatingValidation.TestValidate(model);
 			result.ShouldHaveValidationErrorFor(updateRating => updateRating.Comment);
 		}
-
 
 		private string CreateString(int stringLength)
 		{

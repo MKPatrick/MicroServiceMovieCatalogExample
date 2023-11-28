@@ -1,13 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MovieStreaming.Domain.Entities;
+using System.Reflection.Emit;
 
 namespace MovieStreaming.Infrastructure.Data
 {
-	public partial class MovieStreamingDatabaseContext
+	public class MovieStreamConfiguration : IEntityTypeConfiguration<MovieStream>
 	{
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		public void Configure(EntityTypeBuilder<MovieStream> builder)
 		{
-			modelBuilder.Entity<MovieStream>().HasIndex(x => x.MovieID).IsUnique();
+			builder.HasIndex(x => x.MovieID).IsUnique();
 		}
+
+	
 	}
 }
