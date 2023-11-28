@@ -17,11 +17,12 @@ import { RatingComponent } from './components/rating/rating.component';
 import { FormsModule } from '@angular/forms';
 import { Addmovie } from './models/addmovie';
 import { AddmovieComponent } from './components/addmovie/addmovie.component';
+import { AddmoviestreamComponent } from './components/addmoviestream/addmoviestream.component';
 
 @NgModule({
   declarations: [	
     AppComponent,
-      MoviecardComponent, MovielistComponent, StreamComponent, MoviedetailsComponent, RatingComponent,
+      MoviecardComponent, MovielistComponent, StreamComponent, MoviedetailsComponent, RatingComponent,AddmoviestreamComponent,
       AddmovieComponent
    ],
   imports: [

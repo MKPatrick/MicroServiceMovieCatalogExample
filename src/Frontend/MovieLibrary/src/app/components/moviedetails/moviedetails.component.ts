@@ -12,11 +12,13 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 export class MoviedetailsComponent implements OnInit {
 
 
-  movie!:Movie;
+  movie:Movie;
 
   @Input() movieID!: number;
 
-  constructor(private movieService:MovieService, private ratingService:RatingService,private route:ActivatedRoute) { }
+  constructor(private movieService:MovieService, private ratingService:RatingService,private route:ActivatedRoute) { 
+    this.movie=new Movie();
+  }
 
   ngOnInit() {
 

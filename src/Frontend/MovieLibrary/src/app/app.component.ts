@@ -12,7 +12,7 @@ export class AppComponent {
 
   AddMovie():void
   {
-    console.log("fsd");
+
 		const modalRef = this.modalService.open(AddmovieComponent);
 
   }

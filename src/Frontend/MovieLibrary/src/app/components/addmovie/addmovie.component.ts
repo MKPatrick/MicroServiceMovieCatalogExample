@@ -1,8 +1,9 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Addmovie } from 'src/app/models/addmovie';
 import { ReleaseDate } from 'src/app/models/movie';
 import { MovieService } from 'src/app/services/movie.service';
+import { AddmoviestreamComponent } from '../addmoviestream/addmoviestream.component';
 
 @Component({
   selector: 'app-addmovie',
@@ -16,6 +17,7 @@ export class AddmovieComponent implements OnInit {
   imageFile!:File;
   errorMsg!:string;
   activeModal = inject(NgbActiveModal);
+  modalService = inject(NgbModal);
   constructor(private movieService:MovieService) { 
     this.addMovieModel=new Addmovie();
       this.addMovieModel.releaseDate=new ReleaseDate();
@@ -54,6 +56,8 @@ export class AddmovieComponent implements OnInit {
 this.movieService.addMovie(formData).subscribe(resp=>
 {
 this.activeModal.close();
+this.modalService.open(AddmoviestreamComponent);
+
 }, error=>
 {
    this.errorMsg="Something went wrong...";
