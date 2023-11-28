@@ -52,10 +52,10 @@ namespace MovieStreaming.Application.Messaging
 			   var consumer = new EventingBasicConsumer(channel);
 			   consumer.Received += async (model, ea) =>
 				{
-			   var body = ea.Body.ToArray();
-			   var message = Encoding.UTF8.GetString(body);
-			   await HandleDelete(Convert.ToInt32(message));
-		   };
+					var body = ea.Body.ToArray();
+					var message = Encoding.UTF8.GetString(body);
+					await HandleDelete(Convert.ToInt32(message));
+				};
 			   channel.BasicConsume(queue: "stream.movie.deleted",
 									 autoAck: true,
 									 consumer: consumer);
@@ -68,12 +68,9 @@ namespace MovieStreaming.Application.Messaging
 			{
 				var scopedService = scope.ServiceProvider.GetRequiredService<IMediator>();
 				await scopedService.Send(new DeleteMovieStreamByMovieIDCommand(MovieID));
-				Console.WriteLine($"DELETED MOVIE from Stream {MovieID}");
 			}
 
 		}
-
-
 
 		public Task StartAsync(CancellationToken cancellationToken)
 		{
