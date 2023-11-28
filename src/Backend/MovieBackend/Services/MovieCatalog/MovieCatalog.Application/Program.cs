@@ -1,6 +1,7 @@
 using FluentValidation.AspNetCore;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using MovieCatalog.Application.Configuration;
 using MovieCatalog.Application.Factories;
 using MovieCatalog.Application.Messaging;
@@ -9,6 +10,8 @@ using MovieCatalog.Domain.Contracts;
 using MovieCatalog.Infrastructure.Data;
 using MovieCatalog.Infrastructure.Repositories;
 using MovieCatalog.Infrastructure.UOW;
+using Polly;
+using Polly.Extensions.Http;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -40,7 +43,20 @@ builder.Services.AddScoped<IMovieDeleteProduce, MovieDeleteProduce>();
 
 //Register Services
 builder.Services.AddTransient<IMovieService, MovieService>();
-builder.Services.AddTransient(x => ReviewServiceFactory.Create(builder.Configuration.GetSection("APIS")["ReviewAPI"]));
+
+var retryPolicy = HttpPolicyExtensions
+  .HandleTransientHttpError()
+  .RetryAsync(3);
+
+var timeoutPolicy = Policy.TimeoutAsync<HttpResponseMessage>(10);
+
+
+builder.Services.AddHttpClient<IReviewService, ReviewService>(client =>
+{
+	client.BaseAddress = new Uri(builder.Configuration.GetSection("APIS")["ReviewAPI"]);
+}).AddPolicyHandler(retryPolicy).AddPolicyHandler(timeoutPolicy);
+
+
 
 //Register Repository
 builder.Services.AddTransient<IMovieRepository, MovieRepository>();

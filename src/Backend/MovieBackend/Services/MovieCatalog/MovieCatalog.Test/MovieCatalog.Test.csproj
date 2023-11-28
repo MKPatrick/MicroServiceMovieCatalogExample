@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Services\MovieCatalog\MovieCatalog.Application\MovieCatalog.Application.csproj" />
-  </ItemGroup>
+    <ProjectReference Include="..\MovieCatalog.Application\MovieCatalog.Application.csproj" />
+    </ItemGroup>
 
 </Project>
