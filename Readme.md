@@ -1,3 +1,7 @@
+# Docker Image Status
+[![Docker Image CI](https://github.com/MKPatrick/MicroServiceMovieCatalogExample/actions/workflows/docker-image.yml/badge.svg)](https://github.com/MKPatrick/MicroServiceMovieCatalogExample/actions/workflows/docker-image.yml)
+
+
 ## Backend
 Project is splitted up in 4 Major Projects
 - Catalog => Movie Catalog with all movies
