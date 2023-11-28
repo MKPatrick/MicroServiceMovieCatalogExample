@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using Mapster;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,11 @@ TypeAdapterConfig.GlobalSettings.Default.NameMatchingStrategy(NameMatchingStrate
 builder.Services.Configure<RabbitMQConfiguration>(
 	builder.Configuration.GetSection(RabbitMQConfiguration.Position));
 builder.Services.AddHostedService<MovieDeletedConsumer>();
+
+builder.Services.AddFluentValidation(options =>
+{
+	options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
