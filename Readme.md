@@ -52,3 +52,9 @@ With the current ocelot configuration following endpoints are exposed:
 - /MovieImages/{everything} => Get movie images from MovieCatalog volume
 
 - /Streams/{everything} => Get movie streams from MovieStreams volume
+
+
+# Frontend
+
+## Frontend in Action
+![Backend Architecture](/imgs/frontendaction.gif)

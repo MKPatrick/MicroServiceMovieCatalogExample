@@ -11,7 +11,8 @@
         <tr *ngFor="let movie of movies;">
             <td>{{movie.id}}</td>
             <td>{{movie.title}}</td>
-            <td>{{movie.description}}</td>
+            <td>{{movie.description.length > 100 ? movie.description.substring(0, 100) + '...' : movie.description}}</td>
+            
             <td>
               <button (click)="DeleteMovie(movie)" class="btn btn-dark">🗑️</button>
               <button (click)="EditMovie(movie)" class="btn btn-dark">✏️</button>

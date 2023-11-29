@@ -13,8 +13,8 @@
           
             <div class="form-group">
               <label for="description">Movie Description *</label>
-              <input maxlength="1000" required id="description" type="text"  [(ngModel)]="editMovie.description" #description="ngModel" required name="description" class="form-control" placeholder="Movie Description" />
-              <div class="text-danger" *ngIf="description.invalid && description.touched">Please enter a valid description!</div>
+              <textarea maxlength="1000"  rows="8" required id="description" type="text"  [(ngModel)]="editMovie.description" #description="ngModel" required name="description" class="form-control" placeholder="Movie Description"> </textarea>
+                    <div class="text-danger" *ngIf="description.invalid && description.touched">Please enter a valid description!</div>
             </div>
         
             <div class="form-group">
@@ -26,7 +26,7 @@
         
             <div class="form-group">
               <label for="upload">Movie Thumbnail</label> <br/>
-              <input id="upload" type="file" name="upload" class="file-upload" (change)="onFileSelected($event)">
+              <input id="upload" accept=".jpg,.jpeg,.png" type="file" name="upload" class="file-upload" (change)="onFileSelected($event)">
             
               
             
