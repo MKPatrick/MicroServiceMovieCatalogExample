@@ -21,6 +21,7 @@ namespace MovieCatalog.Infrastructure.Repositories
 			originalEntry.ReleaseDate.Year = entity.ReleaseDate.Year;
 			originalEntry.ReleaseDate.Month = entity.ReleaseDate.Month;
 			originalEntry.ReleaseDate.Day = entity.ReleaseDate.Day;
+			originalEntry.MovieImage= entity.MovieImage;
 		}
 	}
 }
