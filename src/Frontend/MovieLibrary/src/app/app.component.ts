@@ -24,6 +24,9 @@ export class AppComponent {
       {
   //this is dirty..
   location.reload();
+      },()=>
+      {
+        
       });
     
     });

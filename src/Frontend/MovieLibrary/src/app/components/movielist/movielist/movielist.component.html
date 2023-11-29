@@ -4,8 +4,13 @@
 <div class="col-sm-3 animate__animated animate__bounceInRight" *ngFor="let item of movies;in">
    
         <app-moviecard class="" [movie]=item></app-moviecard>
-    
 
+</div>
+
+<div *ngIf="movies.length==0">
+        <div class="mt-5 alert alert-dark text-center" role="alert">
+               No Movies currently added!
+              </div>
 </div>
 </div>
 </div>

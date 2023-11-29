@@ -37,6 +37,9 @@ export class AddmoviestreamComponent implements OnInit {
       this.streamService.addStream(formData).subscribe(()=>
       {
         this.activeModal.close();
+      },()=>
+      {
+        
       });
     }
 
