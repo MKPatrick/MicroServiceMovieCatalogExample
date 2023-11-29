@@ -1,0 +1,43 @@
+<form (ngSubmit)="OnSubmit()" #NewMovieForm="ngForm" >
+        <div class="modal-header">
+          <h4 class="modal-title">Edit Movie</h4>
+          <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+        
+            <div class="form-group">
+              <label for="title">Movie Title *</label>
+              <input maxlength="100"    id="title" type="text"  [(ngModel)]="editMovie.title" #title="ngModel" required name="title" class="form-control" placeholder="Movie Title" />
+            <div class="text-danger" *ngIf="title.invalid && title.touched">Please enter a valid title!</div>
+            </div>
+          
+            <div class="form-group">
+              <label for="description">Movie Description *</label>
+              <input maxlength="1000" required id="description" type="text"  [(ngModel)]="editMovie.description" #description="ngModel" required name="description" class="form-control" placeholder="Movie Description" />
+              <div class="text-danger" *ngIf="description.invalid && description.touched">Please enter a valid description!</div>
+            </div>
+        
+            <div class="form-group">
+              <label for="releasedate">Movie Release Date *</label>
+              <input required id="releasedate" #date="ngModel" type="date" [(ngModel)] ="selectedReleaseDate" (ngModelChange)="selectedReleaseDate = $event"  name="releasedate" class="form-control" placeholder="Movie Release Date" />
+              <div class="text-danger" *ngIf="date.invalid && date.touched">Please enter a valid Date!</div>
+        
+            </div>
+        
+            <div class="form-group">
+              <label for="upload">Movie Thumbnail</label> <br/>
+              <input id="upload" type="file" [(ngModel)]="editMovie.movieImage" class="file-upload" (change)="onFileSelected($event)">
+            </div>
+          
+           
+        
+        </div>
+        <div class="modal-footer">
+        
+                   <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+          <input [disabled]="NewMovieForm.form.invalid" type="submit" class="btn btn-dark"  value="Create Movie" />
+        
+        </div>
+        
+        
+        </form>

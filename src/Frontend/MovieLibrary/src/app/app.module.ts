@@ -19,13 +19,19 @@ import { Addmovie } from './models/addmovie';
 import { AddmovieComponent } from './components/addmovie/addmovie.component';
 import { AddmoviestreamComponent } from './components/addmoviestream/addmoviestream.component';
 import { MovietableComponent } from './components/movietable/movietable.component';
+import { EditmenueComponent } from './components/edit/editmenue/editmenue.component';
+import { EditStreamComponent } from './components/edit/edit-stream/edit-stream.component';
+import { EditMovieDetailsComponent } from './components/edit/edit-movie-details/edit-movie-details.component';
 
 @NgModule({
   declarations: [	
     AppComponent,
       MoviecardComponent, MovielistComponent, StreamComponent, MoviedetailsComponent, RatingComponent,AddmoviestreamComponent,
-      AddmovieComponent,MovietableComponent,
-      MovietableComponent
+      AddmovieComponent,MovietableComponent, EditmenueComponent,
+      MovietableComponent, EditStreamComponent, EditMovieDetailsComponent,
+      EditmenueComponent,
+      EditStreamComponent,
+      EditMovieDetailsComponent
    ],
   imports: [
     BrowserModule,HttpClientModule,

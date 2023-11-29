@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MovieService } from 'src/app/services/movie.service';
 import { Movie } from 'src/app/models/movie';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EditmenueComponent } from '../edit/editmenue/editmenue.component';
 
 @Component({
   selector: 'app-movietable',
@@ -10,6 +12,7 @@ import { Movie } from 'src/app/models/movie';
 export class MovietableComponent  implements OnInit {
  
   movies:Movie[];
+  private modalService = inject(NgbModal);
   constructor(private movieService:MovieService) {this.movies=[] }
 
   ngOnInit() {
@@ -19,6 +22,12 @@ this.movies=res;
    });
   }
 
+
+EditMovie(movie:Movie)
+{
+ const modalRef= this.modalService.open(EditmenueComponent);
+modalRef.componentInstance.MovieID=movie.id;
+}
 
   DeleteMovie(movie:Movie)
   {
