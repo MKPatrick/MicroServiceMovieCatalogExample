@@ -40,8 +40,8 @@ export class EditStreamComponent implements OnInit {
         this.activeModal.close();
       });
     } else {
-      this.streamService.addStream(formData).subscribe(() => {
-        this.activeModal.close();
+      this.streamService.addStream(formData).subscribe(res => {
+        this.activeModal.close(res);
       });
     }
   }

@@ -6,5 +6,7 @@
 </div>
 
 <div *ngIf="stream == undefined">
-  <p>No Stream found</p>
+  <div class="alert text-center alert-secondary" role="alert">
+No Stream found! <button class="btn btn-dark" (click)="AddNewStream()">Add New Stream</button>
+  </div>
 </div>
