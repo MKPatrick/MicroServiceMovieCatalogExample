@@ -22,8 +22,7 @@ export class AppComponent {
       modal.componentInstance.MovieID=resp.id;
       modal.result.then(()=>
       {
-  //this is dirty..
-  location.reload();
+
       },()=>
       {
         

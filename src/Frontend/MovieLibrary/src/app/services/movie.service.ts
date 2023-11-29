@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable,Subject  } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Movie } from '../models/movie';
 import { environment } from 'src/environments/environment';
@@ -9,7 +9,8 @@ import { Form } from '@angular/forms';
 
 @Injectable()
 export class MovieService {
-
+moviesSubject = new Subject<Movie>();
+NewMovieAdded$ = this.moviesSubject.asObservable();
 baseURL:string= environment.apiBaseServerURL + "/api/m/movies";
 constructor(private httpClient:HttpClient) { }
 

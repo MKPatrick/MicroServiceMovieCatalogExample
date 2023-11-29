@@ -46,6 +46,7 @@ namespace MovieCatalog.Application.Services
 			}
 			var result = await movieRepository.AddAsync(movieToAdd);
 			await unitOfWork.SaveChangesAsync();
+			result = SetPlaceHolderImageWhenNoImageIsSet(result);
 			return result.Adapt<GetMovieDTO>();
 		}
 

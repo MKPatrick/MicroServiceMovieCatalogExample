@@ -55,7 +55,7 @@ export class AddmovieComponent implements OnInit {
     formData.append("ReleaseDate.Year", this.addMovieModel.releaseDate.year.toString()); 
 this.movieService.addMovie(formData).subscribe(resp=>
 {
-
+this.movieService.moviesSubject.next(resp);
 this.activeModal.close(resp);
 
 }, error=>
