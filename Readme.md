@@ -1,6 +1,6 @@
 # Docker Image Status
 [![Docker Image CI](https://github.com/MKPatrick/MicroServiceMovieCatalogExample/actions/workflows/docker-image.yml/badge.svg)](https://github.com/MKPatrick/MicroServiceMovieCatalogExample/actions/workflows/docker-image.yml) <space><space> [![APIGatewayBuild](https://github.com/MKPatrick/MicroServiceMovieCatalogExample/actions/workflows/ApiGatewayBuild.yml/badge.svg)](https://github.com/MKPatrick/MicroServiceMovieCatalogExample/actions/workflows/ApiGatewayBuild.yml) <space><space> [![Build MovieCatalog](https://github.com/MKPatrick/MicroServiceMovieCatalogExample/actions/workflows/CatalogApplicationBuild.yml/badge.svg)](https://github.com/MKPatrick/MicroServiceMovieCatalogExample/actions/workflows/CatalogApplicationBuild.yml) <space><space>  [![ReviewApplicationBuild](https://github.com/MKPatrick/MicroServiceMovieCatalogExample/actions/workflows/ReviewApplicationBuild.yml/badge.svg)](https://github.com/MKPatrick/MicroServiceMovieCatalogExample/actions/workflows/ReviewApplicationBuild.yml)  <space><space> [![StreamApplicationBuild](https://github.com/MKPatrick/MicroServiceMovieCatalogExample/actions/workflows/StreamApplicationBuild.yml/badge.svg)](https://github.com/MKPatrick/MicroServiceMovieCatalogExample/actions/workflows/StreamApplicationBuild.yml)
-## Backend
+# Backend
 Project is splitted up in 4 Major Projects
 - Catalog => Movie Catalog with all movies
 - Review => All reviews for each movie
@@ -55,6 +55,12 @@ With the current ocelot configuration following endpoints are exposed:
 
 
 # Frontend
+
+## Technology
+- Uses Angular
+- Clientside validation of userinput
+- Uses bootstrap for design
+
 
 ## Frontend in Action
 ![Backend Architecture](/imgs/frontendaction.gif)
