@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Addmovie } from 'src/app/models/addmovie';
-import { ReleaseDate } from 'src/app/models/movie';
+import { ReleaseDate, Movie } from 'src/app/models/movie';
 import { MovieService } from 'src/app/services/movie.service';
 import { AddmoviestreamComponent } from '../addmoviestream/addmoviestream.component';
 
@@ -55,8 +55,8 @@ export class AddmovieComponent implements OnInit {
     formData.append("ReleaseDate.Year", this.addMovieModel.releaseDate.year.toString()); 
 this.movieService.addMovie(formData).subscribe(resp=>
 {
-this.activeModal.close();
-this.modalService.open(AddmoviestreamComponent);
+
+this.activeModal.close(resp);
 
 }, error=>
 {

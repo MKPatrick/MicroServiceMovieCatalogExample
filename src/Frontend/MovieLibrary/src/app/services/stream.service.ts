@@ -18,9 +18,9 @@ return this.httpClient.get<Stream>(`${this.baseURL}/GetMovieStreamByMovieID/${id
 }
 
 
-addStream(movieID:number,stream:Stream):Observable<any>
+addStream(stream:FormData):Observable<Stream>
 {
-    return this.httpClient.post(`${this.baseURL}`,stream);
+    return this.httpClient.post<Stream>(`${this.baseURL}`,stream);
 }
 
 
