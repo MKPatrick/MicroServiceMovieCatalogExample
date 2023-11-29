@@ -1,1 +1,24 @@
-<p>edit-stream works!</p>
+<form (ngSubmit)="OnSubmit()" #NewStreamForm="ngForm" >
+    <div class="modal-header">
+      <h4 class="modal-title">Add new Movie</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+    
+        <div class="form-group">
+          <label for="upload">Movie Stream</label> <br/>
+          <input  id="upload" type="file" class="file-upload" (change)="onFileSelected($event)">
+        </div>
+      
+    
+    
+    </div>
+    <div class="modal-footer">
+    
+       <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+      <input [disabled]="movieStreamFile==null" type="submit" class="btn btn-dark"  value="Create Stream" />
+    
+    </div>
+    
+    
+    </form>

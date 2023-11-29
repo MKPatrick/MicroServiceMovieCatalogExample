@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 export class StreamService {
 
     
-    baseURL:string= environment.apiBaseServerURL +"/api/s/moviestreams";
+baseURL:string= environment.apiBaseServerURL +"/api/s/moviestreams";
 constructor(private httpClient:HttpClient) { }
 
 
@@ -24,7 +24,7 @@ addStream(stream:FormData):Observable<Stream>
 }
 
 
-updateStream(stream:Stream):Observable<any>
+updateStream(stream:FormData):Observable<any>
 {
     return this.httpClient.put(`${this.baseURL}`,stream);
 }

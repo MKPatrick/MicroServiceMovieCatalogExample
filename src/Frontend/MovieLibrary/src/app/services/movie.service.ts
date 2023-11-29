@@ -25,7 +25,7 @@ getMovieByID(id:number):Observable<Movie>
     return this.httpClient.get<Movie>(`${this.baseURL}/${id}`);
 }
 
-updateMovie(movie:Movie): Observable<any>
+updateMovie(movie:FormData): Observable<any>
 {
     return this.httpClient.put(`${this.baseURL}`,movie);
 }

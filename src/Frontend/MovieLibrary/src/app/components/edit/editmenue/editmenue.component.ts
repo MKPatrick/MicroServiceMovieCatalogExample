@@ -25,5 +25,17 @@ openedModal.componentInstance.MovieID=this.MovieID;
   {
   const openedModal=  this.modalService.open(EditMovieDetailsComponent);
   openedModal.componentInstance.MovieID=this.MovieID;  
+  openedModal.result.then(result=>
+  {
+    
+if(result!=null)
+{
+  this.activeModal.close(result);
+}
+
+  }, ()=>
+  {
+    this.activeModal.close();
+  });
 }
 }

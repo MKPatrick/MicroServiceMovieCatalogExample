@@ -27,6 +27,18 @@ EditMovie(movie:Movie)
 {
  const modalRef= this.modalService.open(EditmenueComponent);
 modalRef.componentInstance.MovieID=movie.id;
+modalRef.result.then(res=>
+{
+//make sure its a movie object
+  if(res!=null && res.hasOwnProperty('movieImage'))
+  {
+    this.movies = this.movies.map(movie => movie.id === res.id ? res : movie);
+  }
+
+},()=>
+{
+
+});
 }
 
   DeleteMovie(movie:Movie)

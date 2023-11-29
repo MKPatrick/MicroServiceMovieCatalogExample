@@ -37,10 +37,10 @@ export class AddmovieComponent implements OnInit {
 
     const date = new Date(this.selectedReleaseDate);
 
-    this.addMovieModel.releaseDate.day=date.getDay();
-    this.addMovieModel.releaseDate.month=date.getMonth();
+    this.addMovieModel.releaseDate.day=date.getDate();
+    this.addMovieModel.releaseDate.month=date.getMonth()+1;
     this.addMovieModel.releaseDate.year=date.getFullYear();
-    console.log(this.addMovieModel);
+ 
     const formData = new FormData();
 
     if(this.imageFile!=null)
