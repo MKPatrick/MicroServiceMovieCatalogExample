@@ -17,6 +17,7 @@ export class RatingComponent implements OnInit {
   constructor(private ratingService:RatingService,private route:ActivatedRoute) {
 this.alreadySubmitted=false;
 this.newRating=new Rating();
+this.newRating.movieRatedStar=1;
 
    }
 

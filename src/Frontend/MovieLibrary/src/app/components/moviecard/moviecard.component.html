@@ -1,13 +1,13 @@
 <div class="card shadow-sm mt-3 grow">
 <a [routerLink]="['/MovieDetails', movie.id]"> 
   <img  [src]="baseURL+movie.movieImage" class="movieIMG" alt="Movie Image">
-  <div class="play" style="background-color: red;">
+  <div class="play img-fluid" style="background-color: red;">
    
     <img class="play"  src="/assets/playbutton.svg" />
 
   </div>
 
-  <p class="rating font-weight-bold ">⭐<b>3.5</b></p>
+<p class="rating shadow-lg font-weight-bold ">⭐ <b>{{movie.averageRating | number : '1.2-2'}}</b></p>
 
 </a>
 </div>
