@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MovieStreaming.Domain.Entities;
-using System.Reflection.Emit;
 
 namespace MovieStreaming.Infrastructure.Data
 {
@@ -11,7 +10,5 @@ namespace MovieStreaming.Infrastructure.Data
 		{
 			builder.HasIndex(x => x.MovieID).IsUnique();
 		}
-
-	
 	}
 }
