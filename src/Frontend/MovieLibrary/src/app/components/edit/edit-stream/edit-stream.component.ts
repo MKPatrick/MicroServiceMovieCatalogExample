@@ -6,56 +6,47 @@ import { Stream } from 'src/app/models/stream';
 @Component({
   selector: 'app-edit-stream',
   templateUrl: './edit-stream.component.html',
-  styleUrls: ['./edit-stream.component.css']
+  styleUrls: ['./edit-stream.component.css'],
 })
-export class EditStreamComponent implements OnInit{
+export class EditStreamComponent implements OnInit {
   @Input() MovieID!: number;
   activeModal = inject(NgbActiveModal);
   modalService = inject(NgbModal);
-  movieStreamFile!:File;
-  editMovieStream!:Stream;
+  movieStreamFile!: File;
+  editMovieStream!: Stream;
 
-  constructor(private streamService:StreamService){}
+  constructor(private streamService: StreamService) {}
 
   ngOnInit(): void {
-
- this.streamService.getStreamForMovie(this.MovieID).subscribe(result=>
- {
-this.editMovieStream=result;
- },error=>
- {
-   this.editMovieStream=new Stream();
-   this.editMovieStream.movieID=this.MovieID;
- });
+    this.streamService.getStreamForMovie(this.MovieID).subscribe(
+      (result) => {
+        this.editMovieStream = result;
+      },
+      (error) => {
+        this.editMovieStream = new Stream();
+        this.editMovieStream.movieID = this.MovieID;
+      }
+    );
   }
- 
 
-  OnSubmit()
-  {
+  OnSubmit() {
     const formData = new FormData();
-    formData.append("FormMovieFile", this.movieStreamFile); 
-    formData.append("MovieID", this.editMovieStream.movieID.toString()); 
-    
-    if(this.editMovieStream.id!=null)
-    {
-      formData.append("ID", this.editMovieStream.id.toString()); 
-    this.streamService.updateStream(formData).subscribe(()=>
-    {
-      this.activeModal.close();
-    });
-  }
-  else{
+    formData.append('FormMovieFile', this.movieStreamFile);
+    formData.append('MovieID', this.editMovieStream.movieID.toString());
 
-    this.streamService.addStream(formData).subscribe(()=>
-    {
-      this.activeModal.close();
-    });
-  }
-
-  
-  }
-
-  onFileSelected(event:any) {
-    this.movieStreamFile = event.target.files[0];
+    if (this.editMovieStream.id != null) {
+      formData.append('ID', this.editMovieStream.id.toString());
+      this.streamService.updateStream(formData).subscribe(() => {
+        this.activeModal.close();
+      });
+    } else {
+      this.streamService.addStream(formData).subscribe(() => {
+        this.activeModal.close();
+      });
     }
+  }
+
+  onFileSelected(event: any) {
+    this.movieStreamFile = event.target.files[0];
+  }
 }

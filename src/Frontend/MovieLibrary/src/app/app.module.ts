@@ -24,21 +24,32 @@ import { EditStreamComponent } from './components/edit/edit-stream/edit-stream.c
 import { EditMovieDetailsComponent } from './components/edit/edit-movie-details/edit-movie-details.component';
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
-      MoviecardComponent, MovielistComponent, StreamComponent, MoviedetailsComponent, RatingComponent,AddmoviestreamComponent,
-      AddmovieComponent,MovietableComponent, EditmenueComponent,
-      MovietableComponent, EditStreamComponent, EditMovieDetailsComponent,
-      EditmenueComponent,
-      EditStreamComponent,
-      EditMovieDetailsComponent
-   ],
-  imports: [
-    BrowserModule,HttpClientModule,
-    AppRoutingModule,FormsModule,
-    NgbModule
+    MoviecardComponent,
+    MovielistComponent,
+    StreamComponent,
+    MoviedetailsComponent,
+    RatingComponent,
+    AddmoviestreamComponent,
+    AddmovieComponent,
+    MovietableComponent,
+    EditmenueComponent,
+    MovietableComponent,
+    EditStreamComponent,
+    EditMovieDetailsComponent,
+    EditmenueComponent,
+    EditStreamComponent,
+    EditMovieDetailsComponent,
   ],
-  providers: [ MovieService, StreamService, RatingService],
-  bootstrap: [AppComponent]
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    FormsModule,
+    NgbModule,
+  ],
+  providers: [MovieService, StreamService, RatingService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

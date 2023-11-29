@@ -11,9 +11,8 @@ describe('AddmoviestreamComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddmoviestreamComponent ]
-    })
-    .compileComponents();
+      declarations: [AddmoviestreamComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

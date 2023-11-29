@@ -1,54 +1,49 @@
-
-
-.movieIMG{
-height: 350px;
-width:100%;
-object-fit: cover;
-
-
+.movieIMG {
+  height: 350px;
+  width: 100%;
+  object-fit: cover;
 }
 
 .rating {
-    color:white;
-    padding: 5px;
-    background-color: #2c3e50;
+  color: white;
+  padding: 5px;
+  background-color: #2c3e50;
 }
 
-
-.grow{
-    transition: all .2s ease-in-out;
+.grow {
+  transition: all 0.2s ease-in-out;
 }
 
-.grow:hover
-{
-    transform: scale(1.05); 
-    border: 1px  solid #e74c3c;
-    
+.grow:hover {
+  transform: scale(1.05);
+  border: 1px solid #e74c3c;
 }
 
+.card:hover .play {
+  display: block;
+}
+/* Add the animation on hover */
+.glow-border:hover::before {
+  opacity: 1;
+}
 
-.card:hover .play{display:block};
-  /* Add the animation on hover */
-  .glow-border:hover::before {
-    opacity: 1;
-  }
+.play {
+  position: absolute;
+  display: none;
+  background-color: #2c3e50;
+  border-radius: 50%;
+  top: 40%;
 
-  .play{
-    position : absolute;
-    display:none;
-    background-color: #2c3e50;
-    border-radius: 50%;
-      top:40%; 
-     
-      width:60px;
-      margin:0 auto; left:0px;
-      right:0px;
-      z-index:100
-  } 
+  width: 60px;
+  margin: 0 auto;
+  left: 0px;
+  right: 0px;
+  z-index: 100;
+}
 
-  .rating{
-    position:absolute;
-    z-index: 100;
-    bottom: 0%;
-    right: 6px;
-  }
+.rating {
+  position: absolute;
+  z-index: 100;
+  bottom: 0%;
+  right: 6px;
+}

@@ -5,18 +5,14 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-moviecard',
   templateUrl: './moviecard.component.html',
-  styleUrls: ['./moviecard.component.css']
+  styleUrls: ['./moviecard.component.css'],
 })
 export class MoviecardComponent implements OnInit {
-
-  baseURL:string= environment.apiBaseServerURL;
+  baseURL: string = environment.apiBaseServerURL;
   @Input() movie!: Movie;
-  constructor() { 
-
-  }
+  constructor() {}
 
   ngOnInit() {
     console.log(this.movie);
   }
-
 }

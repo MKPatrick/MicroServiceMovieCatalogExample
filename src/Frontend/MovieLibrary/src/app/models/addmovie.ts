@@ -1,8 +1,7 @@
-import { ReleaseDate } from "./movie";
+import { ReleaseDate } from './movie';
 
 export class Addmovie {
-    title!:string;
-    description!:string;
-    releaseDate!:ReleaseDate;
-
+  title!: string;
+  description!: string;
+  releaseDate!: ReleaseDate;
 }

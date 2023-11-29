@@ -1,12 +1,10 @@
-
-
-<div *ngIf="stream!=null">
-<video class="h-25 d-inline-block" width="90%" height="90%" controls>
-  <source [src]="baseURL+stream.movieFile"  type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<div *ngIf="stream != null">
+  <video class="h-25 d-inline-block" width="90%" height="90%" controls>
+    <source [src]="baseURL + stream.movieFile" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
 </div>
 
-<div *ngIf="stream==undefined">
-<p>No Stream found</p>
+<div *ngIf="stream == undefined">
+  <p>No Stream found</p>
 </div>

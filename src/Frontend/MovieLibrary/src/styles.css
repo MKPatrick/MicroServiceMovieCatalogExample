@@ -1,8 +1,6 @@
-@import '~bootstrap/dist/css/bootstrap.min.css';
-@import '~animate.css/animate.css';
-body{
-background-color: #141414;
-overflow-x: hidden;
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~animate.css/animate.css";
+body {
+  background-color: #141414;
+  overflow-x: hidden;
 }
-
-

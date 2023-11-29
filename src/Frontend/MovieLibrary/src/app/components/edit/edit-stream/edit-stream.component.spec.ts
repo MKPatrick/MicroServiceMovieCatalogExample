@@ -8,7 +8,7 @@ describe('EditStreamComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [EditStreamComponent]
+      declarations: [EditStreamComponent],
     });
     fixture = TestBed.createComponent(EditStreamComponent);
     component = fixture.componentInstance;

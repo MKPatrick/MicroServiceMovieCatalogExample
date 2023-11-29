@@ -7,31 +7,27 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 @Component({
   selector: 'app-moviedetails',
   templateUrl: './moviedetails.component.html',
-  styleUrls: ['./moviedetails.component.css']
+  styleUrls: ['./moviedetails.component.css'],
 })
 export class MoviedetailsComponent implements OnInit {
-
-
-  movie:Movie;
+  movie: Movie;
 
   @Input() movieID!: number;
 
-  constructor(private movieService:MovieService, private ratingService:RatingService,private route:ActivatedRoute) { 
-    this.movie=new Movie();
+  constructor(
+    private movieService: MovieService,
+    private ratingService: RatingService,
+    private route: ActivatedRoute
+  ) {
+    this.movie = new Movie();
   }
 
   ngOnInit() {
-
     const idParam = this.route.snapshot.paramMap.get('id');
-    this.movieID = idParam ? +idParam : 0; 
+    this.movieID = idParam ? +idParam : 0;
 
-
-    
-this.movieService.getMovieByID(this.movieID).subscribe(movie=>
-  {
-this.movie=movie;
-  });
-
+    this.movieService.getMovieByID(this.movieID).subscribe((movie) => {
+      this.movie = movie;
+    });
   }
-
 }

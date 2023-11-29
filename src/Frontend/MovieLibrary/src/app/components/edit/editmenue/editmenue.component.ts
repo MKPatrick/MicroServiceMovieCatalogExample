@@ -7,35 +7,30 @@ import { EditMovieDetailsComponent } from '../edit-movie-details/edit-movie-deta
 @Component({
   selector: 'app-editmenue',
   templateUrl: './editmenue.component.html',
-  styleUrls: ['./editmenue.component.css']
+  styleUrls: ['./editmenue.component.css'],
 })
 export class EditmenueComponent {
-   modalService = inject(NgbModal);
-   activeModal = inject(NgbActiveModal);
+  modalService = inject(NgbModal);
+  activeModal = inject(NgbActiveModal);
   @Input() MovieID!: number;
 
-
-  EditStream()
-  {
-const openedModal=this.modalService.open(EditStreamComponent);
-openedModal.componentInstance.MovieID=this.MovieID;
+  EditStream() {
+    const openedModal = this.modalService.open(EditStreamComponent);
+    openedModal.componentInstance.MovieID = this.MovieID;
   }
 
-  EditMovieDetails()
-  {
-  const openedModal=  this.modalService.open(EditMovieDetailsComponent);
-  openedModal.componentInstance.MovieID=this.MovieID;  
-  openedModal.result.then(result=>
-  {
-    
-if(result!=null)
-{
-  this.activeModal.close(result);
-}
-
-  }, ()=>
-  {
-    this.activeModal.close();
-  });
-}
+  EditMovieDetails() {
+    const openedModal = this.modalService.open(EditMovieDetailsComponent);
+    openedModal.componentInstance.MovieID = this.MovieID;
+    openedModal.result.then(
+      (result) => {
+        if (result != null) {
+          this.activeModal.close(result);
+        }
+      },
+      () => {
+        this.activeModal.close();
+      }
+    );
+  }
 }

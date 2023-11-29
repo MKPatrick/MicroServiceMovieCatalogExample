@@ -6,41 +6,35 @@ import { StreamService } from 'src/app/services/stream.service';
 @Component({
   selector: 'app-addmoviestream',
   templateUrl: './addmoviestream.component.html',
-  styleUrls: ['./addmoviestream.component.css']
+  styleUrls: ['./addmoviestream.component.css'],
 })
 export class AddmoviestreamComponent implements OnInit {
-  movieStream!:File;
-  addMovieStream:Stream;
+  movieStream!: File;
+  addMovieStream: Stream;
   activeModal = inject(NgbActiveModal);
   modalService = inject(NgbModal);
   @Input() MovieID!: number;
-  constructor(private streamService:StreamService) {
-    this.addMovieStream=new Stream();
-   }
-
-  ngOnInit() {
-    this.addMovieStream.movieID=this.MovieID;
-  
+  constructor(private streamService: StreamService) {
+    this.addMovieStream = new Stream();
   }
 
-  onFileSelected(event:any) {
+  ngOnInit() {
+    this.addMovieStream.movieID = this.MovieID;
+  }
 
+  onFileSelected(event: any) {
     this.movieStream = event.target.files[0];
-   
-    }
+  }
 
-    OnSubmit()
-    {
-      const formData = new FormData();
-      formData.append("FormMovieFile", this.movieStream); 
-      formData.append("MovieID", this.MovieID.toString()); 
-      this.streamService.addStream(formData).subscribe(()=>
-      {
+  OnSubmit() {
+    const formData = new FormData();
+    formData.append('FormMovieFile', this.movieStream);
+    formData.append('MovieID', this.MovieID.toString());
+    this.streamService.addStream(formData).subscribe(
+      () => {
         this.activeModal.close();
-      },()=>
-      {
-        
-      });
-    }
-
+      },
+      () => {}
+    );
+  }
 }

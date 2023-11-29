@@ -6,32 +6,24 @@ import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class StreamService {
+  baseURL: string = environment.apiBaseServerURL + '/api/s/moviestreams';
+  constructor(private httpClient: HttpClient) {}
 
-    
-baseURL:string= environment.apiBaseServerURL +"/api/s/moviestreams";
-constructor(private httpClient:HttpClient) { }
+  getStreamForMovie(id: number): Observable<Stream> {
+    return this.httpClient.get<Stream>(
+      `${this.baseURL}/GetMovieStreamByMovieID/${id}`
+    );
+  }
 
+  addStream(stream: FormData): Observable<Stream> {
+    return this.httpClient.post<Stream>(`${this.baseURL}`, stream);
+  }
 
-getStreamForMovie(id:number):Observable<Stream>
-{
-return this.httpClient.get<Stream>(`${this.baseURL}/GetMovieStreamByMovieID/${id}`);
-}
+  updateStream(stream: FormData): Observable<any> {
+    return this.httpClient.put(`${this.baseURL}`, stream);
+  }
 
-
-addStream(stream:FormData):Observable<Stream>
-{
-    return this.httpClient.post<Stream>(`${this.baseURL}`,stream);
-}
-
-
-updateStream(stream:FormData):Observable<any>
-{
-    return this.httpClient.put(`${this.baseURL}`,stream);
-}
-
-deleteStream(streamID:number):Observable<any>
-{
+  deleteStream(streamID: number): Observable<any> {
     return this.httpClient.delete(`${this.baseURL}/${streamID}`);
-}
-
+  }
 }
