@@ -30,9 +30,9 @@ updateMovie(movie:Movie): Observable<any>
     return this.httpClient.put(`${this.baseURL}`,movie);
 }
 
-deleteMovie(id:number)
+deleteMovie(id:number):Observable<any>
 {
-this.httpClient.delete(`${this.baseURL}/${id}`);
+return this.httpClient.delete(`${this.baseURL}/${id}`);
 }
 
 addMovie(movieForm:FormData):Observable<Movie>

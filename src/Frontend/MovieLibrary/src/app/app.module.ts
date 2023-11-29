@@ -18,12 +18,14 @@ import { FormsModule } from '@angular/forms';
 import { Addmovie } from './models/addmovie';
 import { AddmovieComponent } from './components/addmovie/addmovie.component';
 import { AddmoviestreamComponent } from './components/addmoviestream/addmoviestream.component';
+import { MovietableComponent } from './components/movietable/movietable.component';
 
 @NgModule({
   declarations: [	
     AppComponent,
       MoviecardComponent, MovielistComponent, StreamComponent, MoviedetailsComponent, RatingComponent,AddmoviestreamComponent,
-      AddmovieComponent
+      AddmovieComponent,MovietableComponent,
+      MovietableComponent
    ],
   imports: [
     BrowserModule,HttpClientModule,
